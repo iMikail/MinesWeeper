@@ -51,9 +51,9 @@ class MinesWeeper {
             let section = Int.random(in: 0..<fieldOptions.fieldSize.section)
             let row = Int.random(in: 0..<fieldOptions.fieldSize.row)
             
-            if dict["s\(section)r\(row)"] == nil {
+            if dict["\(section)&\(row)"] == nil {
                 bombs.append([section, row])
-                dict["s\(section)r\(row)"] = 1
+                dict["\(section)&\(row)"] = 1
             }
         }
         
@@ -66,13 +66,13 @@ class MinesWeeper {
         let j = indexPath.row
         
         fieldBuilder.field[i][j].isEnable = false
-        dictForWin["s\(i)r\(j)"] = 0
+        dictForWin["\(i)&\(j)"] = 0
         
         if fieldBuilder.field[i][j].indicator == 0 {
             let emptyCells = gameFunctions.fetchEmptyCells(section: i, row: j, field: fieldBuilder.field)
             emptyCells.forEach { point in
                 fieldBuilder.field[point[0]][point[1]].isEnable = false
-                dictForWin["s\(point[0])r\(point[1])"] = 0 // for checkWin
+                dictForWin["\(point[0])&\(point[1])"] = 0 // for checkWin
             }
         }
     }

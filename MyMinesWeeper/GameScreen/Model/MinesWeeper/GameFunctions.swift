@@ -51,9 +51,9 @@ class GameFunctions {
         func findEmptyCell(sectionPoint: Int, rowPoint: Int) {
             
             guard 0...sectionCount ~= sectionPoint && 0...rowCount ~= rowPoint else { return }
-            guard dict["s\(sectionPoint)r\(rowPoint)"] == nil else { return }
+            guard dict["\(sectionPoint)&\(rowPoint)"] == nil else { return }
             
-            dict["s\(sectionPoint)r\(rowPoint)"] = [sectionPoint, rowPoint]
+            dict["\(sectionPoint)&\(rowPoint)"] = [sectionPoint, rowPoint]
             
             let sectionMin = sectionPoint - 1 > 0 ? sectionPoint - 1 : 0
             let sectionMax = sectionPoint + 1 < sectionCount ? sectionPoint + 1 : sectionCount
@@ -66,7 +66,7 @@ class GameFunctions {
                     if field[i][j].indicator == 0 {
                         findEmptyCell(sectionPoint: i, rowPoint: j)
                     } else if field[i][j].indicator > 0 {
-                        dict["s\(i)r\(j)"] = [i, j]
+                        dict["\(i)&\(j)"] = [i, j]
                     }
                     
                 }
