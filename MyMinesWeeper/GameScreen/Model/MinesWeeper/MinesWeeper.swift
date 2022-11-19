@@ -14,17 +14,11 @@ class MinesWeeper {
     var gameFunctions: GameFunctions
     
     let fieldDifficulty: FieldDifficulty
-    // Score for win
-    private var winsCount: Int {
-        didSet {
-            selectedCellsDict.removeAll()
-        }
-    }
     
-    var count: ((Int) -> ())?
-    var selectedCellsDict = [String:Int]() {
+    var notSelectedCeelsCount: ((Int) -> ())?
+    var pressedCellsDict = [String:Int]() {
         didSet {
-            count?(fieldDifficulty.fieldSize.section * fieldDifficulty.fieldSize.row - selectedCellsDict.count)
+            notSelectedCeelsCount?(fieldDifficulty.cellsCount - pressedCellsDict.count)
         }
     }
     
@@ -35,28 +29,26 @@ class MinesWeeper {
         self.fieldDifficulty = fieldDifficulty
         fieldBuilder = FieldBuilder(fieldSize: fieldDifficulty.fieldSize)
         gameFunctions = GameFunctions()
-        winsCount = fieldDifficulty.fieldSize.section * fieldDifficulty.fieldSize.row - fieldDifficulty.bombsCount
-        let bombs = generateBombs(fieldOptions: fieldDifficulty)
-        gameFunctions.setBombs(bombs: bombs, field: &fieldBuilder.field)
+        gameFunctions.setBombs(bombs: generateBombs(), field: &fieldBuilder.field)
     }
     
     // MARK: - Functions
-    // reset field & bombs
+    
     public func resetGame() {
         fieldBuilder.resetField()
-        let bombs = generateBombs(fieldOptions: fieldDifficulty)
-        gameFunctions.setBombs(bombs: bombs, field: &fieldBuilder.field)
+        pressedCellsDict.removeAll()
+        gameFunctions.setBombs(bombs: generateBombs(), field: &fieldBuilder.field)
     }
     
-    public func generateBombs(fieldOptions: FieldDifficulty) -> [[Int]] {
+    private func generateBombs() -> [[Int]] {
         
         var dict = [String:Int]()
         var bombs = [[Int]]()
         
         while bombs.count < fieldDifficulty.bombsCount {
             
-            let section = Int.random(in: 0..<fieldOptions.fieldSize.section)
-            let row = Int.random(in: 0..<fieldOptions.fieldSize.row)
+            let section = Int.random(in: 0..<fieldDifficulty.fieldSize.section)
+            let row = Int.random(in: 0..<fieldDifficulty.fieldSize.row)
             
             if dict["\(section)&\(row)"] == nil {
                 bombs.append([section, row])
@@ -76,24 +68,23 @@ class MinesWeeper {
         if fieldBuilder.field[i][j].isMine {
             fieldBuilder.field[i][j].isSelectedMine = true
         }
-        selectedCellsDict["\(i)&\(j)"] = 0
+        pressedCellsDict["\(i)&\(j)"] = 0
         
         if fieldBuilder.field[i][j].indicator == 0 {
             let emptyCells = gameFunctions.fetchEmptyCells(section: i, row: j, field: fieldBuilder.field)
             emptyCells.forEach { point in
                 fieldBuilder.field[point[0]][point[1]].isPressed = true
-                selectedCellsDict["\(point[0])&\(point[1])"] = 0 // for checkWin
+                pressedCellsDict["\(point[0])&\(point[1])"] = 0 // for checkWin
             }
         }
     }
     
     public func checkWin() -> Bool {
         //test
-        print("Need cells for win: ", winsCount)
-        print("selected cells: ", selectedCellsDict.count)
-        print("cells for wins: \(winsCount - selectedCellsDict.count)")
+        print("Need cells for win: ", fieldDifficulty.cellsCountForWin)
+        print("selected cells: ", pressedCellsDict.count)
         
-        return winsCount == selectedCellsDict.count ? true : false
+        return fieldDifficulty.cellsCountForWin == pressedCellsDict.count ? true : false
     }
     
 }

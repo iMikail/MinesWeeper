@@ -11,6 +11,10 @@ class FieldDifficulty {
     var fieldSize: FieldSizeProtocol
     var bombsCount: Int
     
+    var cellsCount: Int { fieldSize.section * fieldSize.row }
+    var maxBombsCount: Int { cellsCount - Constants.minFieldSize }
+    var cellsCountForWin: Int { cellsCount - bombsCount }
+    
     init(fieldSize: FieldSizeProtocol, bombsCount: Int) {
         self.fieldSize = fieldSize
         self.bombsCount = bombsCount

@@ -57,7 +57,7 @@ class FieldViewLayout: UICollectionViewLayout {
                         let xPos = Double(item) * cellWidth
                         let yPos = Double(section) * cellHeight
                         
-                        var cellAttributes = UICollectionViewLayoutAttributes(forCellWith: cellIndex)
+                        let cellAttributes = UICollectionViewLayoutAttributes(forCellWith: cellIndex)
                         cellAttributes.frame = CGRect(x: xPos, y: yPos, width: cellWidth, height: cellHeight)
                         
                         // Determine zIndex based on cell type.

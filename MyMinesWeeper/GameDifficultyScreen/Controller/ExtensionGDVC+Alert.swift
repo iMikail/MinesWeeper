@@ -21,14 +21,14 @@ extension GameDifficultyViewController {
             let canselAction = UIAlertAction(title: "Отмена", style: .cancel)
             beginAction.isEnabled = false
             ac.addTextField { textField in
-                textField.text = "Укажите высоту поля(10-100)"
+                textField.text = "Укажите ширину поля(10-100)"
                 textField.isEnabled = false
             }
             ac.addTextField() { textField in
                 textField.placeholder = "22"
             }
             ac.addTextField { textField in
-                textField.text = "Укажите ширину поля(10-100)"
+                textField.text = "Укажите высоту поля(10-100)"
                 textField.isEnabled = false
             }
             ac.addTextField() { textField in
@@ -63,8 +63,8 @@ extension GameDifficultyViewController {
     }
     
     private func setOptionsFromTextFields(_ textFields: [UITextField]?) -> Bool {
-        guard let sectionStr = textFields?[1].text,
-              let rowStr = textFields?[3].text,
+        guard let rowStr = textFields?[1].text,
+              let sectionStr = textFields?[3].text,
               let bombCountStr = textFields?[5].text else { return false }
         
         if let section = Int(sectionStr),

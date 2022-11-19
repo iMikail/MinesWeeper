@@ -10,12 +10,10 @@ import UIKit
 class GameDifficultyViewController: UIViewController {
 
     // MARK: - Variables
-    // TODO: - Переделать!!!! обрезка мин макс размеров и бомб
-    var fieldDifficulty: FieldDifficulty =
-    FieldDifficulty(fieldSize: FieldSize(section:
-                                            Constants.minFieldSize,
-                                         row: Constants.minFieldSize),
-                    bombsCount: Constants.minBombsCount) {
+    // TODO: - Упростить!!!! обрезка мин макс размеров и бомб
+    var fieldDifficulty = FieldDifficulty(fieldSize: FieldSize(section: Constants.minFieldSize,
+                                                               row: Constants.minFieldSize),
+                                          bombsCount: Constants.minBombsCount) {
         // Check parametres min/max size & bombs
         didSet {
             print("section old: \(fieldDifficulty.fieldSize.section)")
@@ -32,8 +30,7 @@ class GameDifficultyViewController: UIViewController {
             print("section new: \(fieldDifficulty.fieldSize.section)")
             print("row new: \(fieldDifficulty.fieldSize.row)")
             print("bomb old: \(fieldDifficulty.bombsCount)")
-            let maxCount = fieldDifficulty.fieldSize.section * fieldDifficulty.fieldSize.row - Constants.minBombsCount
-            fieldDifficulty.bombsCount = fieldDifficulty.bombsCount > maxCount ? maxCount : fieldDifficulty.bombsCount
+            fieldDifficulty.bombsCount = fieldDifficulty.bombsCount > fieldDifficulty.maxBombsCount ? fieldDifficulty.maxBombsCount : fieldDifficulty.bombsCount
             if fieldDifficulty.bombsCount < Constants.minBombsCount {
                 fieldDifficulty.bombsCount = Constants.minBombsCount
             }

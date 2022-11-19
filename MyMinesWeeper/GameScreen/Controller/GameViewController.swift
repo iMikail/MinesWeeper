@@ -46,14 +46,7 @@ class GameViewController: UIViewController {
         title = "Сапёр"
         collectionView.layer.borderWidth = 2.0
         collectionView.layer.borderColor = UIColor.systemOrange.cgColor
-        
-        fieldSizeOutlet.text = "Размер поля: \(minesWeeper.fieldDifficulty.fieldSize.section)x\(minesWeeper.fieldDifficulty.fieldSize.row)"
-        bombCountOutlet.text = "Количество бомб: \(minesWeeper.fieldDifficulty.bombsCount)"
-        freeCellsOutlet.text = "Клеток осталось: \(String(minesWeeper.fieldDifficulty.fieldSize.section * minesWeeper.fieldDifficulty.fieldSize.section))"
-        minesWeeper.count = { count in
-            self.freeCellsOutlet.text = "Клеток осталось: \(String(describing: count))"
-        }
-        
+        setLabelText()  
     }
 
     // MARK: - Actions
@@ -76,6 +69,15 @@ class GameViewController: UIViewController {
     internal func showAllField() {
         minesWeeper.fieldBuilder.deEnableAllCells()
         collectionView.reloadData()
+    }
+    
+    private func setLabelText() {
+        fieldSizeOutlet.text = "Размер поля: \(minesWeeper.fieldDifficulty.fieldSize.row)x\(minesWeeper.fieldDifficulty.fieldSize.section)"
+        bombCountOutlet.text = "Количество бомб: \(minesWeeper.fieldDifficulty.bombsCount)"
+        freeCellsOutlet.text = "Клеток осталось: \(String(minesWeeper.fieldDifficulty.cellsCount))"
+        minesWeeper.notSelectedCeelsCount = { [weak self] count in
+            self?.freeCellsOutlet.text = "Клеток осталось: \(String(describing: count))"
+        }
     }
     
 }
