@@ -19,21 +19,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BvZ-TY-C9v">
-                                <rect key="frame" x="78" y="662" width="81" height="35"/>
+                                <rect key="frame" x="20" y="625" width="150" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Начать"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Пауза"/>
                                 <connections>
                                     <action selector="beginButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UcZ-PL-cgF"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXi-wM-let">
-                                <rect key="frame" x="249" y="663" width="82" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Заново"/>
-                                <connections>
-                                    <action selector="restartButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1ld-qt-NQQ"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" bounces="NO" indicatorStyle="white" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BBN-wu-9ua">
@@ -82,20 +73,53 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="371-ji-Nf9"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Размер поля:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FQ-tX-CMa">
+                                <rect key="frame" x="20" y="668" width="216" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Количество бомб:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPN-11-5wg">
+                                <rect key="frame" x="20" y="700" width="216" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Клеток осталось:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGC-tA-fgP">
+                                <rect key="frame" x="20" y="732" width="216" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXi-wM-let">
+                                <rect key="frame" x="244" y="625" width="150" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Заново"/>
+                                <connections>
+                                    <action selector="restartButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1ld-qt-NQQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                     </view>
                     <connections>
-                        <outlet property="beginButtonOutlet" destination="BvZ-TY-C9v" id="0gB-Xh-oON"/>
+                        <outlet property="bombCountOutlet" destination="qPN-11-5wg" id="5FC-KK-3O4"/>
                         <outlet property="collectionView" destination="BBN-wu-9ua" id="hNm-Ge-2zp"/>
+                        <outlet property="fieldSizeOutlet" destination="8FQ-tX-CMa" id="7QK-D0-yr3"/>
+                        <outlet property="freeCellsOutlet" destination="jGC-tA-fgP" id="Pvj-ko-fYx"/>
+                        <outlet property="pauseButtonOutlet" destination="BvZ-TY-C9v" id="e0a-ND-gfa"/>
                         <outlet property="restartButtonOutlet" destination="iXi-wM-let" id="e6O-mI-al3"/>
                         <segue destination="g0F-Ye-Rud" kind="presentation" identifier="fromGameVCToRecordsVC" id="4pu-sR-wtt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="56.25" y="75"/>
+            <point key="canvasLocation" x="55.072463768115945" y="75"/>
         </scene>
         <!--RecordsScreen-->
         <scene sceneID="V51-WY-XEN">

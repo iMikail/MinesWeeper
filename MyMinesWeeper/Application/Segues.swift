@@ -11,6 +11,6 @@ enum Segues: String {
     case fromMainVCToGameDifficultyVC
     case fromGameDifficultyVCToGameVC
     case fromGameVCToRecordsVC
-    
+    case fromMainVCToOptionsVC
 }
 

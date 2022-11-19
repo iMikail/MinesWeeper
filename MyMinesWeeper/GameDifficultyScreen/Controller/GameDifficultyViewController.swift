@@ -10,6 +10,7 @@ import UIKit
 class GameDifficultyViewController: UIViewController {
 
     // MARK: - Variables
+    // TODO: - Переделать!!!! обрезка мин макс размеров и бомб
     var fieldDifficulty: FieldDifficulty =
     FieldDifficulty(fieldSize: FieldSize(section:
                                             Constants.minFieldSize,
@@ -92,10 +93,10 @@ class GameDifficultyViewController: UIViewController {
         navigationItem.title = "Выбор уровня"
         navigationItem.backButtonTitle = navigationController?.viewControllers.last?.title
         
-        easyOutlet.configureButton(difficulty: .easy)
-        mediumOutlet.configureButton(difficulty: .medium)
-        hardOutlet.configureButton(difficulty: .hard)
-        yourChoiseOutlet.configureButton(difficulty: .yourChoise)
+        easyOutlet.configureFromDifficulty(.easy)
+        mediumOutlet.configureFromDifficulty(.medium)
+        hardOutlet.configureFromDifficulty(.hard)
+        yourChoiseOutlet.configureFromDifficulty(.yourChoise)
     }
 
 }

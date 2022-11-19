@@ -7,12 +7,10 @@
 
 import UIKit
    
-    //https://www.credera.com/insights/building-a-multi-directional-uicollectionview-in-swift
+    // Образец: https://www.credera.com/insights/building-a-multi-directional-uicollectionview-in-swift
 
 class FieldViewLayout: UICollectionViewLayout {
     
-    // Used for calculating each cells CGRect on screen.
-    // CGRect will define the Origin and Size of the cell.
     let cellHeight = 25.0
     let cellWidth = 25.0
    

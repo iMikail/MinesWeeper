@@ -90,6 +90,9 @@
                                             </attributedString>
                                             <color key="baseBackgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="optionsAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Erj-RN-Bvg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

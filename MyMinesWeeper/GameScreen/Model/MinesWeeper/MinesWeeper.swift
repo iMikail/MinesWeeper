@@ -15,19 +15,27 @@ class MinesWeeper {
     
     let fieldDifficulty: FieldDifficulty
     // Score for win
-    lazy private var winsCount = fieldDifficulty.fieldSize.section * fieldDifficulty.fieldSize.row - fieldDifficulty.bombsCount {
+    private var winsCount: Int {
         didSet {
-            dictForWin.removeAll()
+            selectedCellsDict.removeAll()
         }
     }
     
-    private var dictForWin = [String:Int]()
+    var count: ((Int) -> ())?
+    var selectedCellsDict = [String:Int]() {
+        didSet {
+            count?(fieldDifficulty.fieldSize.section * fieldDifficulty.fieldSize.row - selectedCellsDict.count)
+        }
+    }
+    
+
     
     // MARK: - Init
     init(fieldDifficulty: FieldDifficulty) {
         self.fieldDifficulty = fieldDifficulty
         fieldBuilder = FieldBuilder(fieldSize: fieldDifficulty.fieldSize)
         gameFunctions = GameFunctions()
+        winsCount = fieldDifficulty.fieldSize.section * fieldDifficulty.fieldSize.row - fieldDifficulty.bombsCount
         let bombs = generateBombs(fieldOptions: fieldDifficulty)
         gameFunctions.setBombs(bombs: bombs, field: &fieldBuilder.field)
     }
@@ -40,7 +48,6 @@ class MinesWeeper {
         gameFunctions.setBombs(bombs: bombs, field: &fieldBuilder.field)
     }
     
-    // generate bombs
     public func generateBombs(fieldOptions: FieldDifficulty) -> [[Int]] {
         
         var dict = [String:Int]()
@@ -65,14 +72,17 @@ class MinesWeeper {
         let i = indexPath.section
         let j = indexPath.row
         
-        fieldBuilder.field[i][j].isEnable = false
-        dictForWin["\(i)&\(j)"] = 0
+        fieldBuilder.field[i][j].isPressed = true
+        if fieldBuilder.field[i][j].isMine {
+            fieldBuilder.field[i][j].isSelectedMine = true
+        }
+        selectedCellsDict["\(i)&\(j)"] = 0
         
         if fieldBuilder.field[i][j].indicator == 0 {
             let emptyCells = gameFunctions.fetchEmptyCells(section: i, row: j, field: fieldBuilder.field)
             emptyCells.forEach { point in
-                fieldBuilder.field[point[0]][point[1]].isEnable = false
-                dictForWin["\(point[0])&\(point[1])"] = 0 // for checkWin
+                fieldBuilder.field[point[0]][point[1]].isPressed = true
+                selectedCellsDict["\(point[0])&\(point[1])"] = 0 // for checkWin
             }
         }
     }
@@ -80,10 +90,10 @@ class MinesWeeper {
     public func checkWin() -> Bool {
         //test
         print("Need cells for win: ", winsCount)
-        print("selected cells: ", dictForWin.count)
-        print("cells for wins: \(winsCount - dictForWin.count)")
+        print("selected cells: ", selectedCellsDict.count)
+        print("cells for wins: \(winsCount - selectedCellsDict.count)")
         
-        return winsCount == dictForWin.count ? true : false
+        return winsCount == selectedCellsDict.count ? true : false
     }
     
 }

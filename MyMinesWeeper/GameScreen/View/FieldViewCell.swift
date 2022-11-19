@@ -17,16 +17,11 @@ class FieldViewCell: UICollectionViewCell {
     
     // MARK: - Functions
     // reload all view from cell
-    public func reloadView(fieldCell: FieldCell) {
-        isUserInteractionEnabled = fieldCell.isEnable
+    public func reloadViewFromCell(_ fieldCell: FieldCell) {
+        isUserInteractionEnabled = !fieldCell.isPressed
+        self.layer.backgroundColor = UIColor.white.cgColor
         reloadTextLabel(fieldCell: fieldCell)
         reloadImageView(fieldCell: fieldCell)
-        self.layer.backgroundColor = UIColor.white.cgColor
-    }
-    // reload view Game Over
-    public func reloadViewForBomb(fieldCell: FieldCell) {
-        reloadImageView(fieldCell: fieldCell)
-        self.layer.backgroundColor = UIColor.red.cgColor
     }
     // set standart view
     public func setCellView() {
@@ -38,7 +33,7 @@ class FieldViewCell: UICollectionViewCell {
         self.layer.backgroundColor = UIColor.gray.cgColor
 
     }
-    // reload textLabel
+    
     private func reloadTextLabel(fieldCell: FieldCell) {
         
         switch fieldCell.indicator {
@@ -59,12 +54,15 @@ class FieldViewCell: UICollectionViewCell {
             textLabel.textColor = color
         }
     }
-    // reload imageView
+    
     private func reloadImageView(fieldCell: FieldCell) {
         
         if fieldCell.isMine {
             imageView.image = UIImage(systemName: fieldCell.mineImage)
             imageView.isHidden = false
+            if fieldCell.isSelectedMine {
+                self.layer.backgroundColor = UIColor.red.cgColor
+            }
         } 
     }
     

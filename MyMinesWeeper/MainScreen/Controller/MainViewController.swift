@@ -9,6 +9,8 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    // Визуал кнопок в сториборде
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +21,10 @@ class MainViewController: UIViewController {
     
     @IBAction func startGameAction(_ sender: Any) {
         performSegue(withIdentifier: Segues.fromMainVCToGameDifficultyVC.rawValue, sender: nil)
+    }
+    
+    @IBAction func optionsAction(_ sender: Any) {
+        
     }
     
     

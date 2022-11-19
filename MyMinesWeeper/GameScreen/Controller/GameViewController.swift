@@ -10,49 +10,70 @@ import UIKit
 class GameViewController: UIViewController {
 
     // MARK: - Variables
-    let cellIdentifier = "fieldCell"
+    private let cellIdentifier = "fieldCell"
     var minesWeeper: MinesWeeper!
     private var field: FieldArray { minesWeeper.fieldBuilder.field }
     
+    private var isEndGame = false {
+        didSet {
+            pauseButtonOutlet.isEnabled = !isEndGame
+        }
+    }
+    
+    private var isPlay = true {
+        didSet {
+            collectionView.isHidden = !isPlay
+            isPlay ? pauseButtonOutlet.setTitle("Пауза", for: .normal) : pauseButtonOutlet.setTitle("Продолжить", for: .normal)
+        }
+    }
+    
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var beginButtonOutlet: UIButton!
+    @IBOutlet weak var pauseButtonOutlet: UIButton!
     @IBOutlet weak var restartButtonOutlet: UIButton!
+    
+    @IBOutlet weak var fieldSizeOutlet: UILabel!
+    @IBOutlet weak var bombCountOutlet: UILabel!
+    @IBOutlet weak var freeCellsOutlet: UILabel!
+    
+    
+    
     
     // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        title = "Сапёр"
         collectionView.layer.borderWidth = 2.0
         collectionView.layer.borderColor = UIColor.systemOrange.cgColor
         
-        
-        title = "Сапёр"
-        
-       // collectionView.isHidden = true
-        
+        fieldSizeOutlet.text = "Размер поля: \(minesWeeper.fieldDifficulty.fieldSize.section)x\(minesWeeper.fieldDifficulty.fieldSize.row)"
+        bombCountOutlet.text = "Количество бомб: \(minesWeeper.fieldDifficulty.bombsCount)"
+        freeCellsOutlet.text = "Клеток осталось: \(String(minesWeeper.fieldDifficulty.fieldSize.section * minesWeeper.fieldDifficulty.fieldSize.section))"
+        minesWeeper.count = { count in
+            self.freeCellsOutlet.text = "Клеток осталось: \(String(describing: count))"
+        }
         
     }
 
     // MARK: - Actions
     @IBAction func beginButtonAction(_ sender: Any) {
-        //collectionView.isHidden = false
         
+        isPlay = !isPlay
         //test
-        showAllField()
+       // showAllField()
 
     }
     
     @IBAction func restartButtonAction(_ sender: Any) {
         minesWeeper.resetGame()
+        isEndGame = false
         
         collectionView.reloadData()
-      //  collectionView.isHidden = true
     }
     
     // MARK: - Functions
-    private func showAllField() {
+    internal func showAllField() {
         minesWeeper.fieldBuilder.deEnableAllCells()
         collectionView.reloadData()
     }
@@ -78,8 +99,8 @@ extension GameViewController: UICollectionViewDataSource {
         
         cell.setCellView()
         
-        if !field[i][j].isEnable {
-            cell.reloadView(fieldCell: field[i][j])
+        if field[i][j].isPressed {
+            cell.reloadViewFromCell(field[i][j])
         }
 
         return cell
@@ -96,14 +117,15 @@ extension GameViewController: UICollectionViewDelegate {
         
         if field[i][j].isMine {
             if let cell = collectionView.cellForItem(at: indexPath) as? FieldViewCell {
-                showAllField()
-                //TODO: don't work red background
-                cell.reloadViewForBomb(fieldCell: field[i][j])
+                cell.reloadViewFromCell(field[i][j])
+                isEndGame = true
                 present(loserAlertController(), animated: true)
             }
         } else {
             collectionView.reloadData()
             if minesWeeper.checkWin() {
+                isEndGame = true
+                showAllField()
                 present(winnerAlertController(), animated: true)
             }
         }

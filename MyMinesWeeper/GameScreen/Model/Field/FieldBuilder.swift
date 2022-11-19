@@ -20,7 +20,7 @@ class FieldBuilder: FieldBuilderProtocol {
     }
     
     public func deEnableAllCells() {
-        field.forEach { $0.forEach { field[$0.section][$0.row].isEnable = false } }
+        field.forEach { $0.forEach { field[$0.section][$0.row].isPressed = true } }
     }
     
     

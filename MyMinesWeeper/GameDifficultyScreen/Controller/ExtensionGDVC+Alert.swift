@@ -61,7 +61,7 @@ extension GameDifficultyViewController {
         
         present(alertController, animated: true)
     }
-    // setting options from alertController textFields
+    
     private func setOptionsFromTextFields(_ textFields: [UITextField]?) -> Bool {
         guard let sectionStr = textFields?[1].text,
               let rowStr = textFields?[3].text,

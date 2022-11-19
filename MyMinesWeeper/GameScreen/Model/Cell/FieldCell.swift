@@ -12,9 +12,8 @@ struct FieldCell {
     var section: Int = 0
     var row: Int = 0
     
-    var isEnable = true
+    var isPressed = false
     
-     //TODO: enum Indicator -1 0 1..3..4..8
     var indicator: Int = 0 {
         didSet {
             isMine = indicator == -1 ? true : false
@@ -23,6 +22,7 @@ struct FieldCell {
     
     var mineImage = "staroflife.fill"
     var isMine = false
+    var isSelectedMine = false
     
     public func countMinesAround() -> String {
         return String(indicator)

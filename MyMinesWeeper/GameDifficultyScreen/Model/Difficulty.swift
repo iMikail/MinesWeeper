@@ -33,7 +33,7 @@ enum Difficulty: String {
                 return FieldDifficulty(fieldSize: fieldSize, bombsCount: 70)
             case .hard:
                 fieldSize = FieldSize(section: 40, row: 40)
-                return FieldDifficulty(fieldSize: fieldSize, bombsCount: 170)
+                return FieldDifficulty(fieldSize: fieldSize, bombsCount: 200)
             case .yourChoise:
                 return FieldDifficulty(fieldSize: fieldSize, bombsCount: 10)
         }

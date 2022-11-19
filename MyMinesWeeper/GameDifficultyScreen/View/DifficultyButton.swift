@@ -10,7 +10,7 @@ import UIKit
 
 class DifficultyButton: UIButton {
     
-     func configureButton(difficulty: Difficulty) {
+     func configureFromDifficulty(_ difficulty: Difficulty) {
         if var configuration = configuration?.updated(for: self) {
 
             configuration.background.backgroundColor = .darkGray
