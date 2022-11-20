@@ -13,15 +13,23 @@ class FieldViewCell: UICollectionViewCell {
     // MARK: - Outlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textLabel: UILabel!
-      
+    
+    var fieldCell: FieldCell! {
+        didSet {
+            setCellView()
+            if fieldCell.isPressed {
+                reloadView()
+            }
+        }
+    }
     
     // MARK: - Functions
     // reload all view from cell
-    public func reloadViewFromCell(_ fieldCell: FieldCell) {
+    public func reloadView() {
         isUserInteractionEnabled = !fieldCell.isPressed
         self.layer.backgroundColor = UIColor.white.cgColor
-        reloadTextLabel(fieldCell: fieldCell)
-        reloadImageView(fieldCell: fieldCell)
+        reloadTextLabel()
+        reloadImageView()
     }
     // set standart view
     public func setCellView() {
@@ -34,8 +42,7 @@ class FieldViewCell: UICollectionViewCell {
 
     }
     
-    private func reloadTextLabel(fieldCell: FieldCell) {
-        
+    private func reloadTextLabel() {
         switch fieldCell.indicator {
             case -1:
                 text(isHidden: true, color: .black)
@@ -55,13 +62,14 @@ class FieldViewCell: UICollectionViewCell {
         }
     }
     
-    private func reloadImageView(fieldCell: FieldCell) {
-        
+    private func reloadImageView() {
         if fieldCell.isMine {
             imageView.image = UIImage(systemName: fieldCell.mineImage)
             imageView.isHidden = false
             if fieldCell.isSelectedMine {
-                self.layer.backgroundColor = UIColor.red.cgColor
+                self.layer.backgroundColor = UIColor.systemRed.cgColor
+            } else {
+                self.layer.backgroundColor = UIColor.systemGray3.cgColor
             }
         } 
     }

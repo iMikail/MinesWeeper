@@ -45,7 +45,7 @@ class GameViewController: UIViewController {
         
         title = "Сапёр"
         collectionView.layer.borderWidth = 2.0
-        collectionView.layer.borderColor = UIColor.systemOrange.cgColor
+        collectionView.layer.borderColor = UIColor.systemBlue.cgColor
         setLabelText()  
     }
 
@@ -95,15 +95,8 @@ extension GameViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? FieldViewCell else { return UICollectionViewCell() }
-
-        let i = indexPath.section
-        let j = indexPath.row
         
-        cell.setCellView()
-        
-        if field[i][j].isPressed {
-            cell.reloadViewFromCell(field[i][j])
-        }
+        cell.fieldCell = field[indexPath.section][indexPath.row]
 
         return cell
     }
@@ -119,7 +112,7 @@ extension GameViewController: UICollectionViewDelegate {
         
         if field[i][j].isMine {
             if let cell = collectionView.cellForItem(at: indexPath) as? FieldViewCell {
-                cell.reloadViewFromCell(field[i][j])
+                cell.fieldCell = field[i][j]
                 isEndGame = true
                 present(loserAlertController(), animated: true)
             }
