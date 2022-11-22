@@ -22,10 +22,18 @@ class GameViewController: UIViewController {
     
     private var isPlay = true {
         didSet {
-            collectionView.isHidden = !isPlay
             isPlay ? pauseButtonOutlet.setTitle("Пауза", for: .normal) : pauseButtonOutlet.setTitle("Продолжить", for: .normal)
+            collectionView.visibleCells.forEach{ $0.isHidden = !isPlay }
+            collectionView.backgroundView = pauseView
+            collectionView.isScrollEnabled = isPlay
+            
         }
     }
+    private lazy var pauseView: UIImageView = {
+        var imageView = UIImageView(frame: collectionView.bounds)
+        imageView.image = UIImage(systemName: "questionmark.square.dashed")
+        return imageView
+    }()
     
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -46,6 +54,8 @@ class GameViewController: UIViewController {
         title = "Сапёр"
         collectionView.layer.borderWidth = 2.0
         collectionView.layer.borderColor = UIColor.systemBlue.cgColor
+        collectionView.backgroundColor = .systemGray5
+        
         setLabelText()  
     }
 
