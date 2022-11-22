@@ -12,6 +12,7 @@
 		A8B0BF4D291CF6AE009DC730 /* DifficultyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B0BF4C291CF6AE009DC730 /* DifficultyButton.swift */; };
 		A8B0BF4F291CF872009DC730 /* ExtensionGDVC+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B0BF4E291CF872009DC730 /* ExtensionGDVC+Alert.swift */; };
 		A8C3CA5F290AD57C00048C5F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C3CA5E290AD57C00048C5F /* Constants.swift */; };
+		A8C616FB292D004E009EA25C /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C616FA292D004E009EA25C /* GameTimer.swift */; };
 		A8DDFDB229124EDC0008A13C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DDFDB129124EDC0008A13C /* Protocols.swift */; };
 		A8E6DA5429200A5800BDE9E4 /* FieldSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6DA5329200A5800BDE9E4 /* FieldSize.swift */; };
 		A8EAEBC9291B81B800574804 /* GameFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EAEBC8291B81B800574804 /* GameFunctions.swift */; };
@@ -42,6 +43,7 @@
 		A8B0BF4C291CF6AE009DC730 /* DifficultyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButton.swift; sourceTree = "<group>"; };
 		A8B0BF4E291CF872009DC730 /* ExtensionGDVC+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtensionGDVC+Alert.swift"; sourceTree = "<group>"; };
 		A8C3CA5E290AD57C00048C5F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A8C616FA292D004E009EA25C /* GameTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimer.swift; sourceTree = "<group>"; };
 		A8DDFDB129124EDC0008A13C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		A8E6DA5329200A5800BDE9E4 /* FieldSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldSize.swift; sourceTree = "<group>"; };
 		A8EAEBC8291B81B800574804 /* GameFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFunctions.swift; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 				A8EAEBC8291B81B800574804 /* GameFunctions.swift */,
 			);
 			path = MinesWeeper;
+			sourceTree = "<group>";
+		};
+		A8C616F9292D0036009EA25C /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				A8C616FA292D004E009EA25C /* GameTimer.swift */,
+			);
+			path = Timer;
 			sourceTree = "<group>";
 		};
 		A8DDFDB329124EE80008A13C /* Protocols */ = {
@@ -291,6 +301,7 @@
 		A8FB0AF329018062009AA65C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A8C616F9292D0036009EA25C /* Timer */,
 				A899264A2907DADC002A5982 /* MinesWeeper */,
 				A8FB0AF529019FBE009AA65C /* Cell */,
 				A8EB28E628EE72780065E9B6 /* Field */,
@@ -397,6 +408,7 @@
 				A8FB0AF729019FCE009AA65C /* FieldCell.swift in Sources */,
 				A8EAEBCC291B8D6200574804 /* Segues.swift in Sources */,
 				A8B0BF4F291CF872009DC730 /* ExtensionGDVC+Alert.swift in Sources */,
+				A8C616FB292D004E009EA25C /* GameTimer.swift in Sources */,
 				A8EB28D128EE70490065E9B6 /* GameViewController.swift in Sources */,
 				A899264C2907DF7F002A5982 /* MinesWeeper.swift in Sources */,
 				A8EAEBC9291B81B800574804 /* GameFunctions.swift in Sources */,

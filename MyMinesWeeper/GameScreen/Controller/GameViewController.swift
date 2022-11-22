@@ -12,30 +12,29 @@ class GameViewController: UIViewController {
     // MARK: - Variables
     private let cellIdentifier = "fieldCell"
     var minesWeeper: MinesWeeper!
+    var gameTimer: GameTimer?
     private var field: FieldArray { minesWeeper.fieldBuilder.field }
     
     private var isEndGame = false {
         didSet {
             pauseButtonOutlet.isEnabled = !isEndGame
+            gameTimer?.reset()
         }
     }
     
-    private var isPlay = true {
+    private var isPlay = false {
         didSet {
             isPlay ? pauseButtonOutlet.setTitle("Пауза", for: .normal) : pauseButtonOutlet.setTitle("Продолжить", for: .normal)
             collectionView.visibleCells.forEach{ $0.isHidden = !isPlay }
-            collectionView.backgroundView = pauseView
             collectionView.isScrollEnabled = isPlay
+            gameTimer?.isPlay = isPlay
             
         }
     }
-    private lazy var pauseView: UIImageView = {
-        var imageView = UIImageView(frame: collectionView.bounds)
-        imageView.image = UIImage(systemName: "questionmark.square.dashed")
-        return imageView
-    }()
-    
+    private var pauseView: UIImageView!
+        
     // MARK: - Outlets
+    @IBOutlet weak var timeLabelOutlet: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pauseButtonOutlet: UIButton!
     @IBOutlet weak var restartButtonOutlet: UIButton!
@@ -52,25 +51,36 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Сапёр"
+        collectionView.isHidden = true
+        gameTimer = GameTimer(300)
+        
+        setLabelText()  
+    }
+//TODO: убрать задержку
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        pauseView = UIImageView(frame: collectionView.bounds)
+        pauseView.image = UIImage(systemName: "questionmark.square.dashed")
+        collectionView.backgroundView = pauseView
         collectionView.layer.borderWidth = 2.0
         collectionView.layer.borderColor = UIColor.systemBlue.cgColor
         collectionView.backgroundColor = .systemGray5
-        
-        setLabelText()  
+        collectionView.visibleCells.forEach{ $0.isHidden = !isPlay }
+        collectionView.isScrollEnabled = isPlay
+        collectionView.isHidden = false
     }
 
     // MARK: - Actions
     @IBAction func beginButtonAction(_ sender: Any) {
-        
         isPlay = !isPlay
-        //test
-       // showAllField()
 
     }
     
     @IBAction func restartButtonAction(_ sender: Any) {
         minesWeeper.resetGame()
         isEndGame = false
+        isPlay = false
+        pauseButtonOutlet.setTitle("Начать", for: .normal)
         
         collectionView.reloadData()
     }
@@ -82,6 +92,12 @@ class GameViewController: UIViewController {
     }
     
     private func setLabelText() {
+
+//        timeLabelOutlet.text = gameTimer?.timerTime
+        gameTimer?.timerTime = { [weak self] time in
+            self?.timeLabelOutlet.text = time
+        }
+        
         fieldSizeOutlet.text = "Размер поля: \(minesWeeper.fieldDifficulty.fieldSize.row)x\(minesWeeper.fieldDifficulty.fieldSize.section)"
         bombCountOutlet.text = "Количество бомб: \(minesWeeper.fieldDifficulty.bombsCount)"
         freeCellsOutlet.text = "Клеток осталось: \(String(minesWeeper.fieldDifficulty.cellsCount))"

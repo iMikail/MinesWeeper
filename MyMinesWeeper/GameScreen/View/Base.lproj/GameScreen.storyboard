@@ -22,7 +22,7 @@
                                 <rect key="frame" x="20" y="625" width="150" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Пауза"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Начать"/>
                                 <connections>
                                     <action selector="beginButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UcZ-PL-cgF"/>
                                 </connections>
@@ -103,6 +103,13 @@
                                     <action selector="restartButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1ld-qt-NQQ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T6G-iH-k29">
+                                <rect key="frame" x="141" y="111" width="133" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
@@ -114,6 +121,7 @@
                         <outlet property="freeCellsOutlet" destination="jGC-tA-fgP" id="Pvj-ko-fYx"/>
                         <outlet property="pauseButtonOutlet" destination="BvZ-TY-C9v" id="e0a-ND-gfa"/>
                         <outlet property="restartButtonOutlet" destination="iXi-wM-let" id="e6O-mI-al3"/>
+                        <outlet property="timeLabelOutlet" destination="T6G-iH-k29" id="giN-4W-IGk"/>
                         <segue destination="g0F-Ye-Rud" kind="presentation" identifier="fromGameVCToRecordsVC" id="4pu-sR-wtt"/>
                     </connections>
                 </viewController>
