@@ -25,12 +25,11 @@ class GameViewController: UIViewController {
     private var isPlay = false {
         didSet {
             isPlay ? pauseButtonOutlet.setTitle("Пауза", for: .normal) : pauseButtonOutlet.setTitle("Продолжить", for: .normal)
-            collectionView.visibleCells.forEach{ $0.isHidden = !isPlay }
-            collectionView.isScrollEnabled = isPlay
+            pauseImageView.isHidden = isPlay
             gameTimer?.isPlay = isPlay
         }
     }
-    private var pauseView: UIImageView!
+    private var pauseImageView: UIImageView!
         
     // MARK: - Outlets
     @IBOutlet weak var timeLabelOutlet: UILabel!
@@ -42,34 +41,21 @@ class GameViewController: UIViewController {
     @IBOutlet weak var bombCountOutlet: UILabel!
     @IBOutlet weak var freeCellsOutlet: UILabel!
     
-    
-    
-    
     // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Сапёр"
-        collectionView.isHidden = true
+        
+        collectionView.backgroundColor = .systemGray5
+        setBorderFor(collectionView)
+        setPauseImageView()
         if let time = minesWeeper.fieldDifficulty.time {
             gameTimer = GameTimer(time)
         }
         setLabelText()
     }
-//TODO: убрать задержку
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        pauseView = UIImageView(frame: collectionView.bounds)
-        pauseView.image = UIImage(systemName: "questionmark.square.dashed")
-        collectionView.backgroundView = pauseView
-        collectionView.layer.borderWidth = 2.0
-        collectionView.layer.borderColor = UIColor.systemBlue.cgColor
-        collectionView.backgroundColor = .systemGray5
-        collectionView.visibleCells.forEach { $0.isHidden = !isPlay }
-        collectionView.isScrollEnabled = isPlay
-        collectionView.isHidden = false
-    }
-
+    
     // MARK: - Actions
     @IBAction func beginButtonAction(_ sender: Any) {
         isPlay = !isPlay
@@ -100,6 +86,20 @@ class GameViewController: UIViewController {
         }
     }
     
+    private func setPauseImageView() {
+        pauseImageView = UIImageView(frame: collectionView.frame)
+        pauseImageView.isUserInteractionEnabled = true
+        setBorderFor(pauseImageView)
+        pauseImageView.backgroundColor = collectionView.backgroundColor
+        pauseImageView.image = UIImage(systemName: "questionmark.square.dashed")
+        view.addSubview(pauseImageView)
+    }
+    
+    private func setBorderFor(_ view: UIView) {
+        view.layer.borderWidth = 2.0
+        view.layer.borderColor = UIColor.systemBlue.cgColor
+    }
+    
     private func setTimerLabel() {
         guard let gameTimer = gameTimer else {
             timeLabelOutlet.isHidden = true
@@ -111,7 +111,6 @@ class GameViewController: UIViewController {
             self?.timeLabelOutlet.text = time
         }
     }
-    
 }
 
 // MARK: - Extensions
@@ -132,7 +131,6 @@ extension GameViewController: UICollectionViewDataSource {
 
         return cell
     }
-    
 }
 
 extension GameViewController: UICollectionViewDelegate {
@@ -156,12 +154,5 @@ extension GameViewController: UICollectionViewDelegate {
                 showAllField()
             }
         }
-        
-        //test
-        print("tap")
-        print(indexPath)
-        print(field[indexPath.section][indexPath.row])
     }
-    
-    
 }
