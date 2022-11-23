@@ -11,7 +11,11 @@ import UIKit
 extension GameViewController {
     
     public func winnerAlertController() -> UIAlertController {
-        let ac = UIAlertController(title: "Поздравляю вы выиграли!", message: "", preferredStyle: .alert)
+        var message = ""
+        if let gameTimer = gameTimer {
+            message = "Ваше время: \(gameTimer.gameTime)c"
+        }
+        let ac = UIAlertController(title: "Поздравляю вы выиграли!", message: message, preferredStyle: .alert)
         
         let recordsAction = UIAlertAction(title: "Рекорды", style: .default) { [weak self] action in
             self?.performSegue(withIdentifier: Segues.fromGameVCToRecordsVC.rawValue, sender: nil)
@@ -21,7 +25,6 @@ extension GameViewController {
         }
         let restartAction = UIAlertAction(title: "Заново", style: .default) { [weak self] action in
             self?.restartButtonAction(action)
-            self?.beginButtonAction(action)
         }
         
         ac.addAction(recordsAction)

@@ -28,7 +28,6 @@ class GameViewController: UIViewController {
             collectionView.visibleCells.forEach{ $0.isHidden = !isPlay }
             collectionView.isScrollEnabled = isPlay
             gameTimer?.isPlay = isPlay
-            
         }
     }
     private var pauseView: UIImageView!
@@ -52,9 +51,10 @@ class GameViewController: UIViewController {
         
         title = "Сапёр"
         collectionView.isHidden = true
-        gameTimer = GameTimer(300)
-        
-        setLabelText()  
+        if let time = minesWeeper.fieldDifficulty.time {
+            gameTimer = GameTimer(time)
+        }
+        setLabelText()
     }
 //TODO: убрать задержку
     override func viewDidAppear(_ animated: Bool) {
@@ -65,7 +65,7 @@ class GameViewController: UIViewController {
         collectionView.layer.borderWidth = 2.0
         collectionView.layer.borderColor = UIColor.systemBlue.cgColor
         collectionView.backgroundColor = .systemGray5
-        collectionView.visibleCells.forEach{ $0.isHidden = !isPlay }
+        collectionView.visibleCells.forEach { $0.isHidden = !isPlay }
         collectionView.isScrollEnabled = isPlay
         collectionView.isHidden = false
     }
@@ -73,15 +73,14 @@ class GameViewController: UIViewController {
     // MARK: - Actions
     @IBAction func beginButtonAction(_ sender: Any) {
         isPlay = !isPlay
-
     }
     
     @IBAction func restartButtonAction(_ sender: Any) {
         minesWeeper.resetGame()
         isEndGame = false
         isPlay = false
+        setTimerLabel()
         pauseButtonOutlet.setTitle("Начать", for: .normal)
-        
         collectionView.reloadData()
     }
     
@@ -92,17 +91,24 @@ class GameViewController: UIViewController {
     }
     
     private func setLabelText() {
-
-//        timeLabelOutlet.text = gameTimer?.timerTime
-        gameTimer?.timerTime = { [weak self] time in
-            self?.timeLabelOutlet.text = time
-        }
-        
+        setTimerLabel()
         fieldSizeOutlet.text = "Размер поля: \(minesWeeper.fieldDifficulty.fieldSize.row)x\(minesWeeper.fieldDifficulty.fieldSize.section)"
         bombCountOutlet.text = "Количество бомб: \(minesWeeper.fieldDifficulty.bombsCount)"
         freeCellsOutlet.text = "Клеток осталось: \(String(minesWeeper.fieldDifficulty.cellsCount))"
         minesWeeper.notSelectedCeelsCount = { [weak self] count in
             self?.freeCellsOutlet.text = "Клеток осталось: \(String(describing: count))"
+        }
+    }
+    
+    private func setTimerLabel() {
+        guard let gameTimer = gameTimer else {
+            timeLabelOutlet.isHidden = true
+            print("GameTimer = nil")
+            return
+        }
+        timeLabelOutlet.text = gameTimer.originTime
+        gameTimer.timerTime = { [weak self] time in
+            self?.timeLabelOutlet.text = time
         }
     }
     
@@ -139,15 +145,15 @@ extension GameViewController: UICollectionViewDelegate {
         if field[i][j].isMine {
             if let cell = collectionView.cellForItem(at: indexPath) as? FieldViewCell {
                 cell.fieldCell = field[i][j]
-                isEndGame = true
                 present(loserAlertController(), animated: true)
+                isEndGame = true
             }
         } else {
             collectionView.reloadData()
             if minesWeeper.checkWin() {
+                present(winnerAlertController(), animated: true)
                 isEndGame = true
                 showAllField()
-                present(winnerAlertController(), animated: true)
             }
         }
         

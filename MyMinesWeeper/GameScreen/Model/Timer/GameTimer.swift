@@ -9,7 +9,8 @@ import Foundation
 
 class GameTimer {
     
-    private let timeDifficulty: Int
+    let timeDifficulty: Int
+    var originTime: String { getStringTime(timeDifficulty) }
     
     var gameTime: String { getStringTime(gameSeconds) }
     private var gameSeconds: Int { timeDifficulty - timerTimeSeconds }
@@ -17,29 +18,39 @@ class GameTimer {
     var timerTime: ((_ time: String) -> ())?
     private var timerTimeSeconds: Int {
         didSet {
+            timerTime?(getStringTime(timerTimeSeconds))
+        }
+    }
+    
+    private var timer: DispatchSourceTimer
+    private var state: State = .suspended
+    var isPlay: Bool {
+        didSet {
+            isPlay ? resume() : suspend()
+        }
+    }
+
+    init(_ seconds: Int, isPlay: Bool = false) {
+        self.timeDifficulty = seconds
+        timerTimeSeconds = timeDifficulty + 1
+        self.isPlay = isPlay
+        timer = DispatchSource.makeTimerSource(flags: .strict)
+        timer.schedule(deadline: .now(), repeating: .seconds(1))
+        timer.setEventHandler { [weak self] in
             DispatchQueue.main.async {
-                
-                self.timerTime?(self.getStringTime(self.timerTimeSeconds))
+                self?.timerTimeSeconds -= 1
             }
         }
     }
     
-    private var timer: DispatchSourceTimer?
-    var isPlay: Bool {
-        didSet {
-            isPlay ? timer?.resume() : timer?.suspend()
-        }
-    }
-    
-    init(_ seconds: Int, isPlay: Bool = false) {
-        self.timeDifficulty = seconds
-        timerTimeSeconds = timeDifficulty
-        self.isPlay = isPlay
-        self.timer = DispatchSource.makeTimerSource(queue: .global())
-        timer!.schedule(deadline: .now() + .seconds(1), repeating: 1)
-        timer!.setEventHandler { [weak self] in
-            self?.timerTimeSeconds -= 1
-        }
+    deinit {
+        timer.setEventHandler {}
+        timer.cancel()
+        /*
+         If the timer is suspended, calling cancel without resuming
+         triggers a crash. This is documented here https://forums.developer.apple.com/thread/15902
+         */
+        resume()
     }
     
     // hh:mm:ss
@@ -60,6 +71,28 @@ class GameTimer {
     
     func reset() {
         isPlay = false
-        timerTimeSeconds = timeDifficulty
+        timerTime = nil
+        timerTimeSeconds = timeDifficulty + 1
+    }
+    
+    func resume() {
+        if state == .resumed {
+            return
+        }
+        state = .resumed
+        timer.resume()
+    }
+    
+    func suspend() {
+        if state == .suspended {
+            return
+        }
+        state = .suspended
+        timer.suspend()
+    }
+    
+    private enum State {
+        case suspended
+        case resumed
     }
 }
