@@ -8,81 +8,78 @@
 import UIKit
 
 class RecordsTableViewController: UITableViewController {
+    let cellIdentifier = "recordCell"
 
+    // 0-easy/1-medium/2-hard
+    var records = [[Record](), [Record](), [Record]()] {
+        didSet {
+            for (i, item)  in records.enumerated() {
+                records[i] = item.sorted { $0.time < $1.time }
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "Рекорды"
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        records = [
+            [Record(time: 1234, nickName: "Foo", type: .easy),
+             Record(time: 20000, nickName: "Fooooo1", type: .easy),
+             Record(time: 4000, nickName: "Foo2", type: .easy),
+             Record(time: 3000, nickName: "Foo3", type: .easy),
+             Record(time: 5000, nickName: "Foo4", type: .easy),
+             Record(time: 1000, nickName: "Foo5", type: .easy),
+                   ],
+            [Record(time: 10000, nickName: "Foo", type: .medium),
+             Record(time: 2000, nickName: "Foo1", type: .medium),
+             Record(time: 30000, nickName: "Foo2", type: .medium)
+            ],
+            [Record(time: 10234, nickName: "Foo", type: .hard),
+             Record(time: 2000, nickName: "Foo1", type: .hard),
+             Record(time: 3000, nickName: "Foo2", type: .hard)
+            ]
+        ]
+        
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return RecordType.allCases.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        guard let section = RecordType(rawValue: section) else { fatalError() }
+        
+        switch section {
+            case .easy: return records[0].count
+            case .medium: return records[1].count
+            case .hard: return records[2].count
+        }
     }
 
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let section = RecordType(rawValue: section) else { fatalError() }
+        
+        var text = " сложность:"
+        switch section {
+            case .easy: text = "Лёгкая" + text
+            case .medium: text =  "Средняя" + text
+            case .hard: text = "Тяжёлая" + text
+        }
+        return text
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "recordCells", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? RecordCell else { fatalError("Record cell not created") }
+        guard let recordType = RecordType(rawValue: indexPath.section) else { fatalError("RecordType not created") }
 
-        // Configure the cell...
-
+        switch recordType {
+            case .easy: cell.record = records[0][indexPath.row]
+            case .medium: cell.record = records[1][indexPath.row]
+            case .hard: cell.record = records[2][indexPath.row]
+        }
         return cell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

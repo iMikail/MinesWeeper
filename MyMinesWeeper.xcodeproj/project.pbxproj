@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A860084A2912B77000F781C5 /* ExtensionGameVC+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86008492912B77000F781C5 /* ExtensionGameVC+Alert.swift */; };
+		A889BB7A29325EA700039845 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = A889BB7929325EA700039845 /* Record.swift */; };
+		A889BB7C2932638800039845 /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A889BB7B2932638800039845 /* RecordCell.swift */; };
 		A899264C2907DF7F002A5982 /* MinesWeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A899264B2907DF7F002A5982 /* MinesWeeper.swift */; };
 		A8B0BF4D291CF6AE009DC730 /* DifficultyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B0BF4C291CF6AE009DC730 /* DifficultyButton.swift */; };
 		A8B0BF4F291CF872009DC730 /* ExtensionGDVC+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B0BF4E291CF872009DC730 /* ExtensionGDVC+Alert.swift */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		A86008492912B77000F781C5 /* ExtensionGameVC+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtensionGameVC+Alert.swift"; sourceTree = "<group>"; };
+		A889BB7929325EA700039845 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		A889BB7B2932638800039845 /* RecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
 		A899264B2907DF7F002A5982 /* MinesWeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinesWeeper.swift; sourceTree = "<group>"; };
 		A8B0BF4C291CF6AE009DC730 /* DifficultyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButton.swift; sourceTree = "<group>"; };
 		A8B0BF4E291CF872009DC730 /* ExtensionGDVC+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtensionGDVC+Alert.swift"; sourceTree = "<group>"; };
@@ -81,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A889BB7829325D8300039845 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A889BB7929325EA700039845 /* Record.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A899264A2907DADC002A5982 /* MinesWeeper */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +167,7 @@
 		A8EAEBD7291BF8CB00574804 /* RecordsScreen */ = {
 			isa = PBXGroup;
 			children = (
+				A889BB7829325D8300039845 /* Model */,
 				A8EAEBD9291BF8EF00574804 /* View */,
 				A8EAEBD8291BF8E200574804 /* Controller */,
 			);
@@ -173,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				A8EAEBDC291BF95300574804 /* RecordsScreen.storyboard */,
+				A889BB7B2932638800039845 /* RecordCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -409,11 +423,13 @@
 				A8EAEBCC291B8D6200574804 /* Segues.swift in Sources */,
 				A8B0BF4F291CF872009DC730 /* ExtensionGDVC+Alert.swift in Sources */,
 				A8C616FB292D004E009EA25C /* GameTimer.swift in Sources */,
+				A889BB7C2932638800039845 /* RecordCell.swift in Sources */,
 				A8EB28D128EE70490065E9B6 /* GameViewController.swift in Sources */,
 				A899264C2907DF7F002A5982 /* MinesWeeper.swift in Sources */,
 				A8EAEBC9291B81B800574804 /* GameFunctions.swift in Sources */,
 				A8EB28CD28EE70490065E9B6 /* AppDelegate.swift in Sources */,
 				A8EAEBDB291BF91300574804 /* RecordsTableViewController.swift in Sources */,
+				A889BB7A29325EA700039845 /* Record.swift in Sources */,
 				A8EB28E128EE72490065E9B6 /* FieldViewLayout.swift in Sources */,
 				A8EAEBD0291B8F7B00574804 /* GameDifficultyViewController.swift in Sources */,
 				A8EAEBD6291B933C00574804 /* Difficulty.swift in Sources */,

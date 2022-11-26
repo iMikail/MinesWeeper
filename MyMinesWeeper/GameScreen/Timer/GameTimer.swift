@@ -10,15 +10,15 @@ import Foundation
 class GameTimer {
     
     let timeDifficulty: Int
-    var originTime: String { getStringTime(timeDifficulty) }
+    var originTime: String { GameTimer.getStringTime(timeDifficulty) }
     
-    var gameTime: String { getStringTime(gameSeconds) }
+    var gameTime: String { GameTimer.getStringTime(gameSeconds) }
     private var gameSeconds: Int { timeDifficulty - timerTimeSeconds }
     
     var timerTime: ((_ time: String) -> ())?
     private var timerTimeSeconds: Int {
         didSet {
-            timerTime?(getStringTime(timerTimeSeconds))
+            timerTime?(GameTimer.getStringTime(timerTimeSeconds))
         }
     }
     
@@ -54,7 +54,7 @@ class GameTimer {
     }
     
     // hh:mm:ss
-    private func getStringTime(_ time: Int) -> String {
+    static func getStringTime(_ time: Int) -> String {
         let seconds = (time % 3600) % 60
         let minutes = (time % 3600) / 60
         let hours = time / 3600
