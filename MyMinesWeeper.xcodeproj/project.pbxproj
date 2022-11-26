@@ -271,6 +271,8 @@
 		A8FB0AEC29017F24009AA65C /* GameScreen */ = {
 			isa = PBXGroup;
 			children = (
+				A8C616F9292D0036009EA25C /* Timer */,
+				A899264A2907DADC002A5982 /* MinesWeeper */,
 				A8DDFDB329124EE80008A13C /* Protocols */,
 				A8FB0AF329018062009AA65C /* Model */,
 				A8FB0AF22901805C009AA65C /* View */,
@@ -301,8 +303,6 @@
 		A8FB0AF329018062009AA65C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A8C616F9292D0036009EA25C /* Timer */,
-				A899264A2907DADC002A5982 /* MinesWeeper */,
 				A8FB0AF529019FBE009AA65C /* Cell */,
 				A8EB28E628EE72780065E9B6 /* Field */,
 			);
