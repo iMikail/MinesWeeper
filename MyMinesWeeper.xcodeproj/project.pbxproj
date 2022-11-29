@@ -17,6 +17,7 @@
 		A8C616FB292D004E009EA25C /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C616FA292D004E009EA25C /* GameTimer.swift */; };
 		A8DDFDB229124EDC0008A13C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DDFDB129124EDC0008A13C /* Protocols.swift */; };
 		A8E6DA5429200A5800BDE9E4 /* FieldSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6DA5329200A5800BDE9E4 /* FieldSize.swift */; };
+		A8E8B34629350C7A0034CF45 /* RecordsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8B34529350C7A0034CF45 /* RecordsManager.swift */; };
 		A8EAEBC9291B81B800574804 /* GameFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EAEBC8291B81B800574804 /* GameFunctions.swift */; };
 		A8EAEBCC291B8D6200574804 /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EAEBCB291B8D6200574804 /* Segues.swift */; };
 		A8EAEBD0291B8F7B00574804 /* GameDifficultyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EAEBCF291B8F7B00574804 /* GameDifficultyViewController.swift */; };
@@ -50,6 +51,7 @@
 		A8C616FA292D004E009EA25C /* GameTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimer.swift; sourceTree = "<group>"; };
 		A8DDFDB129124EDC0008A13C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		A8E6DA5329200A5800BDE9E4 /* FieldSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldSize.swift; sourceTree = "<group>"; };
+		A8E8B34529350C7A0034CF45 /* RecordsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsManager.swift; sourceTree = "<group>"; };
 		A8EAEBC8291B81B800574804 /* GameFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFunctions.swift; sourceTree = "<group>"; };
 		A8EAEBCB291B8D6200574804 /* Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
 		A8EAEBCF291B8F7B00574804 /* GameDifficultyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDifficultyViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		A8E8B34429350C670034CF45 /* RecordsManager */ = {
+			isa = PBXGroup;
+			children = (
+				A8E8B34529350C7A0034CF45 /* RecordsManager.swift */,
+			);
+			path = RecordsManager;
+			sourceTree = "<group>";
+		};
 		A8EAEBCA291B8D2400574804 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +177,7 @@
 		A8EAEBD7291BF8CB00574804 /* RecordsScreen */ = {
 			isa = PBXGroup;
 			children = (
+				A8E8B34429350C670034CF45 /* RecordsManager */,
 				A889BB7829325D8300039845 /* Model */,
 				A8EAEBD9291BF8EF00574804 /* View */,
 				A8EAEBD8291BF8E200574804 /* Controller */,
@@ -423,6 +434,7 @@
 				A8EAEBCC291B8D6200574804 /* Segues.swift in Sources */,
 				A8B0BF4F291CF872009DC730 /* ExtensionGDVC+Alert.swift in Sources */,
 				A8C616FB292D004E009EA25C /* GameTimer.swift in Sources */,
+				A8E8B34629350C7A0034CF45 /* RecordsManager.swift in Sources */,
 				A889BB7C2932638800039845 /* RecordCell.swift in Sources */,
 				A8EB28D128EE70490065E9B6 /* GameViewController.swift in Sources */,
 				A899264C2907DF7F002A5982 /* MinesWeeper.swift in Sources */,
