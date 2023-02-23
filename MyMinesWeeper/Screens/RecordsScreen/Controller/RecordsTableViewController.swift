@@ -16,25 +16,6 @@ class RecordsTableViewController: UITableViewController {
         super.viewDidLoad()
 
         resetButtons = Array(repeating: createResetButton(), count: RecordType.allCases.count)
-//testing
-        RecordsManager.shared.records = [
-            [Record(time: 1234, nickName: "Foo", type: .easy),
-             Record(time: 20000, nickName: "Fooooo1", type: .easy),
-             Record(time: 4000, nickName: "Foo2", type: .easy),
-             Record(time: 3000, nickName: "Foo3", type: .easy),
-             Record(time: 5000, nickName: "Foo4", type: .easy),
-             Record(time: 1000, nickName: "Foo5", type: .easy)
-                   ],
-            [Record(time: 10000, nickName: "Foo", type: .medium),
-             Record(time: 2000, nickName: "Foo1", type: .medium),
-             Record(time: 30000, nickName: "Foo2", type: .medium)
-            ],
-            [Record(time: 10234, nickName: "Foo", type: .hard),
-             Record(time: 2000, nickName: "Foo1", type: .hard),
-             Record(time: 3000, nickName: "Foo2", type: .hard)
-            ]
-        ]
-
     }
 
     private func setupResetButton(forSection section: Int) {

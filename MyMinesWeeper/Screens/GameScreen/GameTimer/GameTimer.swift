@@ -7,19 +7,28 @@
 
 import Foundation
 
+protocol GameTimerDelegate: AnyObject {
+    func timeIsOver()
+}
+
 class GameTimer {
     let timeDifficulty: Int
-    var originTime: String { GameTimer.getStringTime(timeDifficulty) }
+    var originTime: String { GameTimer.getStringTime(timeDifficulty) } // for first view
 
     var gameTime: String { GameTimer.getStringTime(gameSeconds) }
-    private var gameSeconds: Int { timeDifficulty - timerTimeSeconds }
+    var gameSeconds: Int { timeDifficulty - timerTimeSeconds } // for records
 
     var timerTime: ((_ time: String) -> Void)?
     private var timerTimeSeconds: Int {
         didSet {
             timerTime?(GameTimer.getStringTime(timerTimeSeconds))
+            if timerTimeSeconds <= 0 {
+                delegate?.timeIsOver()
+            }
         }
     }
+
+    var delegate: GameTimerDelegate?
 
     private var timer: DispatchSourceTimer
     private var state: State = .suspended

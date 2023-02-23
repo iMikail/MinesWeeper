@@ -32,8 +32,8 @@ extension GameViewController {
         return alert
     }
 
-    public func loserAlertController() -> UIAlertController {
-        let alert = UIAlertController(title: "Вы проиграли..", message: "", preferredStyle: .alert)
+    public func loserAlertController(message: String) -> UIAlertController {
+        let alert = UIAlertController(title: "Вы проиграли..", message: message, preferredStyle: .alert)
 
         let skipAction = UIAlertAction(title: "Открыть поле", style: .default) { [weak self] _ in
             self?.showAllField()
