@@ -5,8 +5,6 @@
 //  Created by Misha Volkov on 28.11.22.
 //
 
-import Foundation
-
 class RecordsManager {
     static let shared: RecordsManager = RecordsManager()
 
@@ -15,7 +13,7 @@ class RecordsManager {
         didSet {
             for (ind, item)  in records.enumerated() {
                 records[ind] = item.sorted { $0.time < $1.time }
-                while records[ind].count > Constants.countRecordsForEachSection {
+                while records[ind].count > DefaultOptions.countRecordsForEachSection {
                     records[ind].removeLast()
                 }
             }

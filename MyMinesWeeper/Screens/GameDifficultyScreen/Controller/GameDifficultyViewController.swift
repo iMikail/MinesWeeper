@@ -9,23 +9,25 @@ import UIKit
 
 class GameDifficultyViewController: UIViewController {
     // MARK: - Variables
-    var fieldDifficulty = FieldDifficulty(fieldSize: FieldSize(section: Constants.minFieldSize,
-                                                               row: Constants.minFieldSize),
-                                          bombsCount: Constants.minBombsCount) {
+    var fieldDifficulty = FieldDifficulty(fieldSize: FieldSize(section: DefaultOptions.minFieldSize,
+                                                               row: DefaultOptions.minFieldSize),
+                                          bombsCount: DefaultOptions.minBombsCount) {
         // check min/max size & bombs
         didSet {
             print(" ->old options:\n\(FieldDifficulty.description(forFieldDifficulty: fieldDifficulty))")
             fieldDifficulty.fieldSize.section = resizeValue(fieldDifficulty.fieldSize.section,
-                                                            minValue: Constants.minFieldSize,
-                                                            maxValue: Constants.maxFieldSize)
+                                                            minValue: DefaultOptions.minFieldSize,
+                                                            maxValue: DefaultOptions.maxFieldSize)
             fieldDifficulty.fieldSize.row = resizeValue(fieldDifficulty.fieldSize.row,
-                                                            minValue: Constants.minFieldSize,
-                                                            maxValue: Constants.maxFieldSize)
+                                                            minValue: DefaultOptions.minFieldSize,
+                                                            maxValue: DefaultOptions.maxFieldSize)
             fieldDifficulty.bombsCount = resizeValue(fieldDifficulty.bombsCount,
-                                                     minValue: Constants.minBombsCount,
+                                                     minValue: DefaultOptions.minBombsCount,
                                                      maxValue: fieldDifficulty.maxBombsCount)
             if let time = fieldDifficulty.time {
-                fieldDifficulty.time = resizeValue(time, minValue: Constants.minTime, maxValue: Constants.maxTime)
+                fieldDifficulty.time = resizeValue(time,
+                                                   minValue: DefaultOptions.minTime,
+                                                   maxValue: DefaultOptions.maxTime)
             }
             print(" ->new options:\n\(FieldDifficulty.description(forFieldDifficulty: fieldDifficulty))")
         }
