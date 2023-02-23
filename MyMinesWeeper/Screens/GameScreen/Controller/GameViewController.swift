@@ -33,7 +33,7 @@ class GameViewController: UIViewController {
             gameTimer?.isPlay = isPlay
         }
     }
-    private var pauseImageView: UIImageView!
+    private lazy var pauseImageView: UIImageView = UIImageView(frame: collectionView.frame)
 
     // MARK: - Outlets
     @IBOutlet weak var timeLabelOutlet: UILabel!
@@ -51,10 +51,15 @@ class GameViewController: UIViewController {
         title = "Сапёр"
 
         collectionView.backgroundColor = .systemGray5
-        setBorderFor(collectionView)
-        setupPauseImageView()
         setupTimer()
         setupLabelText()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupPauseImageView()
+        setBorderFor(collectionView)
+        collectionView.isHidden = false
     }
 
     // MARK: - Actions
@@ -89,7 +94,6 @@ class GameViewController: UIViewController {
     }
 
     private func setupPauseImageView() {
-        pauseImageView = UIImageView(frame: collectionView.frame)
         pauseImageView.isUserInteractionEnabled = true
         setBorderFor(pauseImageView)
         pauseImageView.backgroundColor = collectionView.backgroundColor

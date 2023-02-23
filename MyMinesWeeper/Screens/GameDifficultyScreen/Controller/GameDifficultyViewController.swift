@@ -108,7 +108,8 @@ class GameDifficultyViewController: UIViewController {
 
     // MARK: - AlertController functions for yourChoise
     private func difficultyAlertController(timerIsEnabled: Bool) -> UIAlertController {
-        let alert = UIAlertController(title: "Ваш выбор", message: "Укажите параметры", preferredStyle: .alert)
+        let message = "Укажите параметры (неверные данные будут заменены на ближайшие подходящие)"
+        let alert = UIAlertController(title: "Ваш выбор", message: message, preferredStyle: .alert)
         let beginAction = UIAlertAction(title: "Играть", style: .default) { [weak self] _ in
             self?.performSegue(withIdentifier: Segues.fromGameDifficultyVCToGameVC.rawValue, sender: nil)
         }
@@ -116,32 +117,32 @@ class GameDifficultyViewController: UIViewController {
         beginAction.isEnabled = false
 
         alert.addTextField { [weak self] textField in
-            self?.configureTextField(textField, text: "Укажите ширину поля(10-100)")
+            self?.configureTextField(textField, text: "Ширина поля:")
         }
         alert.addTextField { [weak self] textField in
-            self?.configureTextField(textField, placeholder: "20", isEnable: true)
-        }
-
-        alert.addTextField { [weak self] textField in
-            self?.configureTextField(textField, text: "Укажите высоту поля(10-100)")
-        }
-        alert.addTextField { [weak self] textField in
-            self?.configureTextField(textField, placeholder: "30", isEnable: true)
+            self?.configureTextField(textField, placeholder: "10-100", isEnable: true)
         }
 
         alert.addTextField { [weak self] textField in
-            self?.configureTextField(textField, text: "Укажите количество мин(>10)")
+            self?.configureTextField(textField, text: "Высота поля:")
         }
         alert.addTextField { [weak self] textField in
-            self?.configureTextField(textField, placeholder: "40", isEnable: true)
+            self?.configureTextField(textField, placeholder: "10-100", isEnable: true)
+        }
+
+        alert.addTextField { [weak self] textField in
+            self?.configureTextField(textField, text: "Количество бомб:")
+        }
+        alert.addTextField { [weak self] textField in
+            self?.configureTextField(textField, placeholder: ">10", isEnable: true)
         }
 
         if timerIsEnabled {
             alert.addTextField { [weak self] textField in
-                self?.configureTextField(textField, text: "Укажите таймер в секундах(>60)")
+                self?.configureTextField(textField, text: "Таймер(в секундах):")
             }
             alert.addTextField { [weak self] textField in
-                self?.configureTextField(textField, placeholder: "60", isEnable: true)
+                self?.configureTextField(textField, placeholder: "60-3600(1мин - 1час)", isEnable: true)
             }
         }
 

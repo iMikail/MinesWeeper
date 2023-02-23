@@ -103,6 +103,11 @@
                             <constraint firstItem="FGc-oi-mIR" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" id="9Rc-Go-J9I"/>
                             <constraint firstItem="FGc-oi-mIR" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="Ikk-nd-8RL"/>
                         </constraints>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="FGc-oi-mIR"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="6PO-3n-jry"/>
                     <connections>
