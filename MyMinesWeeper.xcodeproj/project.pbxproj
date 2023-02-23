@@ -87,6 +87,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A84B7F8B29A74AF800DAC86C /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				A8FB0AEA29017D46009AA65C /* LaunchScreen */,
+				A8FB0AE629017CC3009AA65C /* MainScreen */,
+				A8EAEBCD291B8EEB00574804 /* GameDifficultyScreen */,
+				A8FB0AEC29017F24009AA65C /* GameScreen */,
+				A8EAEBD7291BF8CB00574804 /* RecordsScreen */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		A84B7F8C29A74BE800DAC86C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A8E8B34429350C670034CF45 /* RecordsManager */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		A889BB7829325D8300039845 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,12 +124,12 @@
 			path = MinesWeeper;
 			sourceTree = "<group>";
 		};
-		A8C616F9292D0036009EA25C /* Timer */ = {
+		A8C616F9292D0036009EA25C /* GameTimer */ = {
 			isa = PBXGroup;
 			children = (
 				A8C616FA292D004E009EA25C /* GameTimer.swift */,
 			);
-			path = Timer;
+			path = GameTimer;
 			sourceTree = "<group>";
 		};
 		A8DDFDB329124EE80008A13C /* Protocols */ = {
@@ -133,7 +153,6 @@
 			children = (
 				A8EB28CC28EE70490065E9B6 /* AppDelegate.swift */,
 				A8EB28CE28EE70490065E9B6 /* SceneDelegate.swift */,
-				A8EAEBCB291B8D6200574804 /* Segues.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -177,7 +196,6 @@
 		A8EAEBD7291BF8CB00574804 /* RecordsScreen */ = {
 			isa = PBXGroup;
 			children = (
-				A8E8B34429350C670034CF45 /* RecordsManager */,
 				A889BB7829325D8300039845 /* Model */,
 				A8EAEBD9291BF8EF00574804 /* View */,
 				A8EAEBD8291BF8E200574804 /* Controller */,
@@ -221,12 +239,8 @@
 		A8EB28CB28EE70490065E9B6 /* MyMinesWeeper */ = {
 			isa = PBXGroup;
 			children = (
-				A8EAEBCA291B8D2400574804 /* Application */,
-				A8FB0AEA29017D46009AA65C /* LaunchScreen */,
-				A8FB0AE629017CC3009AA65C /* MainScreen */,
-				A8EAEBCD291B8EEB00574804 /* GameDifficultyScreen */,
-				A8FB0AEC29017F24009AA65C /* GameScreen */,
-				A8EAEBD7291BF8CB00574804 /* RecordsScreen */,
+				A84B7F8C29A74BE800DAC86C /* Managers */,
+				A84B7F8B29A74AF800DAC86C /* Screens */,
 				A8FB0AEB29017E4D009AA65C /* SupportingFiles */,
 			);
 			path = MyMinesWeeper;
@@ -286,9 +300,11 @@
 		A8FB0AEB29017E4D009AA65C /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				A8EAEBCA291B8D2400574804 /* Application */,
 				A8EB28D528EE704D0065E9B6 /* Assets.xcassets */,
 				A8EB28DA28EE704D0065E9B6 /* Info.plist */,
 				A8C3CA5E290AD57C00048C5F /* Constants.swift */,
+				A8EAEBCB291B8D6200574804 /* Segues.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -296,7 +312,7 @@
 		A8FB0AEC29017F24009AA65C /* GameScreen */ = {
 			isa = PBXGroup;
 			children = (
-				A8C616F9292D0036009EA25C /* Timer */,
+				A8C616F9292D0036009EA25C /* GameTimer */,
 				A899264A2907DADC002A5982 /* MinesWeeper */,
 				A8DDFDB329124EE80008A13C /* Protocols */,
 				A8FB0AF329018062009AA65C /* Model */,
@@ -360,6 +376,7 @@
 				A8EB28C528EE70490065E9B6 /* Sources */,
 				A8EB28C628EE70490065E9B6 /* Frameworks */,
 				A8EB28C728EE70490065E9B6 /* Resources */,
+				A84B7F8A29A73F9D00DAC86C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -418,6 +435,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A84B7F8A29A73F9D00DAC86C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A8EB28C528EE70490065E9B6 /* Sources */ = {
