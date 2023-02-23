@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  GameViewController.swift
 //  MyMinesWeeper
 //
 //  Created by Misha Volkov on 6.10.22.
@@ -48,12 +48,11 @@ class GameViewController: UIViewController {
     // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = "Сапёр"
 
         collectionView.backgroundColor = .systemGray5
         setBorderFor(collectionView)
-        setPauseImageView()
+        setupPauseImageView()
         setupTimer()
         setupLabelText()
     }
@@ -73,7 +72,7 @@ class GameViewController: UIViewController {
     }
 
     // MARK: - Functions
-    internal func showAllField() {
+    func showAllField() {
         minesWeeper.fieldBuilder.deEnableAllCells()
         collectionView.reloadData()
     }
@@ -89,7 +88,7 @@ class GameViewController: UIViewController {
         }
     }
 
-    private func setPauseImageView() {
+    private func setupPauseImageView() {
         pauseImageView = UIImageView(frame: collectionView.frame)
         pauseImageView.isUserInteractionEnabled = true
         setBorderFor(pauseImageView)
@@ -103,6 +102,7 @@ class GameViewController: UIViewController {
         view.layer.borderColor = UIColor.systemBlue.cgColor
     }
 
+    // MARK: timer/records functions
     private func setupTimer() {
         if let time = minesWeeper.fieldDifficulty.time {
             gameTimer = GameTimer(time)
@@ -128,6 +128,63 @@ class GameViewController: UIViewController {
 
         let record = Record(time: time, nickName: nickName, type: type)
         RecordsManager.shared.addRecord(record)
+    }
+
+    // MARK: AlertController functions
+    private func winnerAlertController() -> UIAlertController {
+        var message = ""
+        if let gameTimer = gameTimer {
+            message = "Ваше время: \(gameTimer.gameTime)c"
+        }
+        let alert = UIAlertController(title: "Поздравляю вы выиграли!", message: message, preferredStyle: .alert)
+
+        let recordsAction = UIAlertAction(title: "Рекорды", style: .default) { [weak self] _ in
+            self?.performSegue(withIdentifier: Segues.fromGameVCToRecordsVC.rawValue, sender: nil)
+        }
+        let menuAction = UIAlertAction(title: "Меню", style: .default) { [weak self] _ in
+            self?.navigationController?.popToRootViewController(animated: true)
+        }
+        let restartAction = UIAlertAction(title: "Заново", style: .default) { [weak self] action in
+            self?.restartButtonAction(action)
+        }
+
+        alert.addAction(recordsAction)
+        alert.addAction(menuAction)
+        alert.addAction(restartAction)
+
+        return alert
+    }
+
+    private func loserAlertController(message: String) -> UIAlertController {
+        let alert = UIAlertController(title: "Вы проиграли..", message: message, preferredStyle: .alert)
+
+        let skipAction = UIAlertAction(title: "Открыть поле", style: .default) { [weak self] _ in
+            self?.showAllField()
+        }
+        let restartAction = UIAlertAction(title: "Заново", style: .default) { [weak self] action in
+            self?.restartButtonAction(action)
+        }
+        let menuAction = UIAlertAction(title: "Меню", style: .default) { [weak self] _ in
+            self?.navigationController?.popToRootViewController(animated: true)
+        }
+
+        alert.addAction(skipAction)
+        alert.addAction(restartAction)
+        alert.addAction(menuAction)
+
+        return alert
+    }
+
+    private func pauseAlertController() -> UIAlertController {
+        let alert = UIAlertController(title: "Пауза", message: "", preferredStyle: .alert)
+
+        let beginAction = UIAlertAction(title: "Продолжить", style: .cancel) { [weak self] action in
+            self?.beginButtonAction(action)
+        }
+
+        alert.addAction(beginAction)
+
+        return alert
     }
 }
 

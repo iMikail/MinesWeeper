@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A860084A2912B77000F781C5 /* ExtensionGameVC+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86008492912B77000F781C5 /* ExtensionGameVC+Alert.swift */; };
 		A889BB7A29325EA700039845 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = A889BB7929325EA700039845 /* Record.swift */; };
 		A889BB7C2932638800039845 /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A889BB7B2932638800039845 /* RecordCell.swift */; };
 		A899264C2907DF7F002A5982 /* MinesWeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A899264B2907DF7F002A5982 /* MinesWeeper.swift */; };
 		A8B0BF4D291CF6AE009DC730 /* DifficultyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B0BF4C291CF6AE009DC730 /* DifficultyButton.swift */; };
-		A8B0BF4F291CF872009DC730 /* ExtensionGDVC+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B0BF4E291CF872009DC730 /* ExtensionGDVC+Alert.swift */; };
 		A8C3CA5F290AD57C00048C5F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C3CA5E290AD57C00048C5F /* DefaultOptions.swift */; };
 		A8C616FB292D004E009EA25C /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C616FA292D004E009EA25C /* GameTimer.swift */; };
 		A8DDFDB229124EDC0008A13C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DDFDB129124EDC0008A13C /* Protocols.swift */; };
@@ -41,12 +39,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A86008492912B77000F781C5 /* ExtensionGameVC+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtensionGameVC+Alert.swift"; sourceTree = "<group>"; };
 		A889BB7929325EA700039845 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		A889BB7B2932638800039845 /* RecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
 		A899264B2907DF7F002A5982 /* MinesWeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinesWeeper.swift; sourceTree = "<group>"; };
 		A8B0BF4C291CF6AE009DC730 /* DifficultyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButton.swift; sourceTree = "<group>"; };
-		A8B0BF4E291CF872009DC730 /* ExtensionGDVC+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtensionGDVC+Alert.swift"; sourceTree = "<group>"; };
 		A8C3CA5E290AD57C00048C5F /* DefaultOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultOptions.swift; sourceTree = "<group>"; };
 		A8C616FA292D004E009EA25C /* GameTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimer.swift; sourceTree = "<group>"; };
 		A8DDFDB129124EDC0008A13C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -171,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				A8EAEBCF291B8F7B00574804 /* GameDifficultyViewController.swift */,
-				A8B0BF4E291CF872009DC730 /* ExtensionGDVC+Alert.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -326,7 +321,6 @@
 			isa = PBXGroup;
 			children = (
 				A8EB28D028EE70490065E9B6 /* GameViewController.swift */,
-				A86008492912B77000F781C5 /* ExtensionGameVC+Alert.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -463,14 +457,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8EB28E828EE786F0065E9B6 /* FieldBuilder.swift in Sources */,
-				A860084A2912B77000F781C5 /* ExtensionGameVC+Alert.swift in Sources */,
 				A8C3CA5F290AD57C00048C5F /* DefaultOptions.swift in Sources */,
 				A8EB28E528EE726B0065E9B6 /* FieldViewCell.swift in Sources */,
 				A8DDFDB229124EDC0008A13C /* Protocols.swift in Sources */,
 				A8EB28E328EE725C0065E9B6 /* FieldCreator.swift in Sources */,
 				A8FB0AF729019FCE009AA65C /* FieldCell.swift in Sources */,
 				A8EAEBCC291B8D6200574804 /* Segues.swift in Sources */,
-				A8B0BF4F291CF872009DC730 /* ExtensionGDVC+Alert.swift in Sources */,
 				A8C616FB292D004E009EA25C /* GameTimer.swift in Sources */,
 				A8E8B34629350C7A0034CF45 /* RecordsManager.swift in Sources */,
 				A889BB7C2932638800039845 /* RecordCell.swift in Sources */,
