@@ -118,7 +118,7 @@ class GameViewController: UIViewController {
     }
 }
 
-// MARK: - Extensions
+// MARK: - Extensions UICollectionViewDataSource
 extension GameViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         minesWeeper.fieldDifficulty.fieldSize.section
@@ -142,6 +142,7 @@ extension GameViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: UICollectionViewDelegate
 extension GameViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 

@@ -80,12 +80,34 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TrL-th-HEg">
+                                <rect key="frame" x="131" y="171" width="152" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Таймер" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6L-ZF-N6F">
+                                        <rect key="frame" x="0.0" y="3.5" width="83" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zYR-ND-7KU">
+                                        <rect key="frame" x="103" y="0.0" width="51" height="31"/>
+                                        <color key="onTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="thumbTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="timerSwitchAction:" destination="DQK-Eg-xM9" eventType="valueChanged" id="t0C-yX-mUG"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZNm-Z6-ITo"/>
                         <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <constraints>
                             <constraint firstItem="AbO-7W-hgy" firstAttribute="centerX" secondItem="ZNm-Z6-ITo" secondAttribute="centerX" id="2cg-Zu-bMl"/>
                             <constraint firstItem="AbO-7W-hgy" firstAttribute="centerY" secondItem="ZNm-Z6-ITo" secondAttribute="centerY" id="8pA-Vi-GpH"/>
+                            <constraint firstItem="AbO-7W-hgy" firstAttribute="top" secondItem="TrL-th-HEg" secondAttribute="bottom" constant="25" id="mjZ-Xq-3Em"/>
+                            <constraint firstItem="TrL-th-HEg" firstAttribute="width" secondItem="AbO-7W-hgy" secondAttribute="width" multiplier="0.8" id="sv7-G7-qrQ"/>
+                            <constraint firstItem="TrL-th-HEg" firstAttribute="centerX" secondItem="ZNm-Z6-ITo" secondAttribute="centerX" id="wMp-k0-uXS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pHG-f8-ZY4"/>
@@ -93,6 +115,7 @@
                         <outlet property="easyOutlet" destination="WQ5-OM-AIs" id="GdM-6G-of9"/>
                         <outlet property="hardOutlet" destination="SpD-Ku-32V" id="aeX-xX-tkB"/>
                         <outlet property="mediumOutlet" destination="EVw-6N-eh3" id="qFF-h8-1yt"/>
+                        <outlet property="timerOutlet" destination="zYR-ND-7KU" id="Inb-jL-tAe"/>
                         <outlet property="yourChoiseOutlet" destination="vMC-CE-P9p" id="Ub3-mq-cd0"/>
                         <segue destination="ler-ro-Jcm" kind="show" identifier="fromGameDifficultyVCToGameVC" id="aNP-e1-ms9"/>
                     </connections>

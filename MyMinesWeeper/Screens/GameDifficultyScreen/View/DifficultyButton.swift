@@ -8,18 +8,24 @@
 import UIKit
 
 class DifficultyButton: UIButton {
-
-     func configureFromDifficulty(_ difficulty: Difficulty) {
+    func configureFromDifficulty(_ difficulty: Difficulty, timerIsEnable: Bool) {
         if var configuration = configuration?.updated(for: self) {
+            let options = difficulty.fieldDifficulty
 
             configuration.background.backgroundColor = .darkGray
 
             configuration.attributedTitle = AttributedString(difficulty.rawValue)
             configuration.attributedTitle?.font = .boldSystemFont(ofSize: 21)
-            configuration.attributedSubtitle = AttributedString(
-                "\(difficulty.fieldDifficulty.fieldSize.row)x" +
-                "\(difficulty.fieldDifficulty.fieldSize.section), " +
-                "\(difficulty.fieldDifficulty.bombsCount)")
+            let size = "\(options.fieldSize.row)x\(options.fieldSize.section)"
+            let bombCount = "\(options.bombsCount) бомб"
+            var timeString = "Без таймера"
+            if timerIsEnable {
+                if let time = options.time {
+                    timeString = "\(time / 60) минут"
+                }
+            }
+            configuration.attributedSubtitle = AttributedString("\(size) ,\(bombCount) ,\(timeString)")
+
             configuration.attributedSubtitle?.font = .systemFont(ofSize: 17)
             configuration.attributedSubtitle?.foregroundColor = .lightGray
 
@@ -47,6 +53,5 @@ class DifficultyButton: UIButton {
 
         contentHorizontalAlignment = .center
         contentVerticalAlignment = .center
-
     }
 }

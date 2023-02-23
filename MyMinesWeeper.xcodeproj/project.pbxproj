@@ -22,7 +22,7 @@
 		A8EAEBCC291B8D6200574804 /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EAEBCB291B8D6200574804 /* Segues.swift */; };
 		A8EAEBD0291B8F7B00574804 /* GameDifficultyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EAEBCF291B8F7B00574804 /* GameDifficultyViewController.swift */; };
 		A8EAEBD2291B908000574804 /* GameDifficulty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8EAEBD1291B908000574804 /* GameDifficulty.storyboard */; };
-		A8EAEBD6291B933C00574804 /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EAEBD5291B933C00574804 /* Difficulty.swift */; };
+		A8EAEBD6291B933C00574804 /* FieldDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EAEBD5291B933C00574804 /* FieldDifficulty.swift */; };
 		A8EAEBDB291BF91300574804 /* RecordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EAEBDA291BF91300574804 /* RecordsTableViewController.swift */; };
 		A8EAEBDD291BF95300574804 /* RecordsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8EAEBDC291BF95300574804 /* RecordsScreen.storyboard */; };
 		A8EB28CD28EE70490065E9B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EB28CC28EE70490065E9B6 /* AppDelegate.swift */; };
@@ -56,7 +56,7 @@
 		A8EAEBCB291B8D6200574804 /* Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
 		A8EAEBCF291B8F7B00574804 /* GameDifficultyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDifficultyViewController.swift; sourceTree = "<group>"; };
 		A8EAEBD1291B908000574804 /* GameDifficulty.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GameDifficulty.storyboard; sourceTree = "<group>"; };
-		A8EAEBD5291B933C00574804 /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
+		A8EAEBD5291B933C00574804 /* FieldDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldDifficulty.swift; sourceTree = "<group>"; };
 		A8EAEBDA291BF91300574804 /* RecordsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsTableViewController.swift; sourceTree = "<group>"; };
 		A8EAEBDC291BF95300574804 /* RecordsScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordsScreen.storyboard; sourceTree = "<group>"; };
 		A8EB28C928EE70490065E9B6 /* MyMinesWeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMinesWeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,7 +188,7 @@
 		A8EAEBD4291B932700574804 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A8EAEBD5291B933C00574804 /* Difficulty.swift */,
+				A8EAEBD5291B933C00574804 /* FieldDifficulty.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -482,7 +482,7 @@
 				A889BB7A29325EA700039845 /* Record.swift in Sources */,
 				A8EB28E128EE72490065E9B6 /* FieldViewLayout.swift in Sources */,
 				A8EAEBD0291B8F7B00574804 /* GameDifficultyViewController.swift in Sources */,
-				A8EAEBD6291B933C00574804 /* Difficulty.swift in Sources */,
+				A8EAEBD6291B933C00574804 /* FieldDifficulty.swift in Sources */,
 				A8EB28CF28EE70490065E9B6 /* SceneDelegate.swift in Sources */,
 				A8B0BF4D291CF6AE009DC730 /* DifficultyButton.swift in Sources */,
 				A8FB0AF029017FA9009AA65C /* MainViewController.swift in Sources */,

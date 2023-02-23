@@ -14,9 +14,7 @@ class GameDifficultyViewController: UIViewController {
                                           bombsCount: Constants.minBombsCount) {
         // check min/max size & bombs
         didSet {
-            print("section old: \(fieldDifficulty.fieldSize.section)")
-            print("row old: \(fieldDifficulty.fieldSize.row)")
-            print("bomb old: \(fieldDifficulty.bombsCount)")
+            print(" ->old options:\n\(FieldDifficulty.description(forFieldDifficulty: fieldDifficulty))")
             fieldDifficulty.fieldSize.section = resizeValue(fieldDifficulty.fieldSize.section,
                                                             minValue: Constants.minFieldSize,
                                                             maxValue: Constants.maxFieldSize)
@@ -26,9 +24,10 @@ class GameDifficultyViewController: UIViewController {
             fieldDifficulty.bombsCount = resizeValue(fieldDifficulty.bombsCount,
                                                      minValue: Constants.minBombsCount,
                                                      maxValue: fieldDifficulty.maxBombsCount)
-            print("section new: \(fieldDifficulty.fieldSize.section)")
-            print("row new: \(fieldDifficulty.fieldSize.row)")
-            print("new: \(fieldDifficulty.bombsCount)")
+            if let time = fieldDifficulty.time {
+                fieldDifficulty.time = resizeValue(time, minValue: Constants.minTime, maxValue: Constants.maxTime)
+            }
+            print(" ->new options:\n\(FieldDifficulty.description(forFieldDifficulty: fieldDifficulty))")
         }
     }
 
@@ -37,6 +36,7 @@ class GameDifficultyViewController: UIViewController {
     @IBOutlet weak var mediumOutlet: DifficultyButton!
     @IBOutlet weak var hardOutlet: DifficultyButton!
     @IBOutlet weak var yourChoiseOutlet: DifficultyButton!
+    @IBOutlet weak var timerOutlet: UISwitch!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,11 +60,18 @@ class GameDifficultyViewController: UIViewController {
         performSegueWithDifficulty(.yourChoise)
     }
 
+    @IBAction func timerSwitchAction(_ sender: UISwitch) {
+        if !sender.isOn {
+            fieldDifficulty.time = nil
+        }
+        configureButtons()
+    }
+
     // MARK: - Functions
     private func performSegueWithDifficulty(_ difficulty: Difficulty) {
         self.fieldDifficulty = difficulty.fieldDifficulty
         if difficulty == .yourChoise {
-            difficultyAlertController()
+            present(difficultyAlertController(timerIsEnabled: timerOutlet.isOn), animated: true)
         } else {
             performSegue(withIdentifier: Segues.fromGameDifficultyVCToGameVC.rawValue, sender: nil)
         }
@@ -73,7 +80,9 @@ class GameDifficultyViewController: UIViewController {
     // preSet options for game field(size & bombs)
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let gameVC = segue.destination as? GameViewController else { return }
-
+        if !timerOutlet.isOn {
+            fieldDifficulty.time = nil
+        }
         gameVC.minesWeeper = MinesWeeper(fieldDifficulty: fieldDifficulty)
     }
 
@@ -85,9 +94,13 @@ class GameDifficultyViewController: UIViewController {
         navigationItem.title = "Выбор уровня"
         navigationItem.backButtonTitle = navigationController?.viewControllers.last?.title
 
-        easyOutlet.configureFromDifficulty(.easy)
-        mediumOutlet.configureFromDifficulty(.medium)
-        hardOutlet.configureFromDifficulty(.hard)
-        yourChoiseOutlet.configureFromDifficulty(.yourChoise)
+        configureButtons()
+    }
+
+    private func configureButtons() {
+        easyOutlet.configureFromDifficulty(.easy, timerIsEnable: timerOutlet.isOn)
+        mediumOutlet.configureFromDifficulty(.medium, timerIsEnable: timerOutlet.isOn)
+        hardOutlet.configureFromDifficulty(.hard, timerIsEnable: timerOutlet.isOn)
+        yourChoiseOutlet.configureFromDifficulty(.yourChoise, timerIsEnable: timerOutlet.isOn)
     }
 }

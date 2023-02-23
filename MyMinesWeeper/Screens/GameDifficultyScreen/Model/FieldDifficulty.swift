@@ -19,6 +19,17 @@ class FieldDifficulty {
         self.bombsCount = bombsCount
         self.time = time
     }
+
+    static func description(forFieldDifficulty fieldDifficulty: FieldDifficulty) -> String {
+        let size = "Размер поля: \(fieldDifficulty.fieldSize.row)x\(fieldDifficulty.fieldSize.section)"
+        let bombCount = "Количество бомб: \(fieldDifficulty.bombsCount)"
+        var timeString = "Без таймера"
+            if let time = fieldDifficulty.time {
+                timeString = "Таймер \(time) секунд"
+            }
+
+        return size + "\n" + bombCount + "\n" + timeString
+    }
 }
 
 enum Difficulty: String {
