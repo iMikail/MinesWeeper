@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DQK-Eg-xM9">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--GameScreen-->
+        <scene sceneID="jax-sR-qb5">
+            <objects>
+                <viewControllerPlaceholder storyboardName="GameScreen" referencedIdentifier="GameScreen" id="ler-ro-Jcm" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="mWG-EN-c1K"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FSJ-v1-rYj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3002" y="33"/>
+        </scene>
+        <!--Game Difficulty View Controller-->
+        <scene sceneID="RGh-KC-0FM">
+            <objects>
+                <viewController id="DQK-Eg-xM9" customClass="GameDifficultyViewController" customModule="MyMinesWeeper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qlv-xP-TGs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="AbO-7W-hgy">
+                                <rect key="frame" x="112" y="227" width="190" height="456"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQ5-OM-AIs" customClass="DifficultyButton" customModule="MyMinesWeeper" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="190" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="190" id="Da3-cz-1fL"/>
+                                            <constraint firstAttribute="height" constant="90" id="L8x-qs-oPi"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Легко" subtitle="ffff" titleAlignment="center"/>
+                                        <connections>
+                                            <action selector="easyAction:" destination="DQK-Eg-xM9" eventType="touchUpInside" id="CsI-mb-lrx"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVw-6N-eh3" customClass="DifficultyButton" customModule="MyMinesWeeper" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="122" width="190" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="g4d-qo-fEi"/>
+                                            <constraint firstAttribute="width" constant="190" id="yUB-Ye-lY3"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Ср"/>
+                                        <connections>
+                                            <action selector="mediumAction:" destination="DQK-Eg-xM9" eventType="touchUpInside" id="khG-yc-bRr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SpD-Ku-32V" customClass="DifficultyButton" customModule="MyMinesWeeper" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="244" width="190" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="J8d-Kb-ZS5"/>
+                                            <constraint firstAttribute="width" constant="190" id="Jmp-YV-UsN"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Тяж"/>
+                                        <connections>
+                                            <action selector="hardAction:" destination="DQK-Eg-xM9" eventType="touchUpInside" id="r3m-R0-w1g"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMC-CE-P9p" customClass="DifficultyButton" customModule="MyMinesWeeper" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="366" width="190" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="3Nf-fB-2WK"/>
+                                            <constraint firstAttribute="width" constant="190" id="Noz-A5-qrJ"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Своя сложность"/>
+                                        <connections>
+                                            <action selector="yourChoiseAction:" destination="DQK-Eg-xM9" eventType="touchUpInside" id="vOa-Gp-OS1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TrL-th-HEg">
+                                <rect key="frame" x="131" y="171" width="152" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Таймер" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6L-ZF-N6F">
+                                        <rect key="frame" x="0.0" y="3.5" width="83" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zYR-ND-7KU">
+                                        <rect key="frame" x="103" y="0.0" width="51" height="31"/>
+                                        <color key="onTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="thumbTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="timerSwitchAction:" destination="DQK-Eg-xM9" eventType="valueChanged" id="t0C-yX-mUG"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZNm-Z6-ITo"/>
+                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                        <constraints>
+                            <constraint firstItem="AbO-7W-hgy" firstAttribute="centerX" secondItem="ZNm-Z6-ITo" secondAttribute="centerX" id="2cg-Zu-bMl"/>
+                            <constraint firstItem="AbO-7W-hgy" firstAttribute="centerY" secondItem="ZNm-Z6-ITo" secondAttribute="centerY" id="8pA-Vi-GpH"/>
+                            <constraint firstItem="AbO-7W-hgy" firstAttribute="top" secondItem="TrL-th-HEg" secondAttribute="bottom" constant="25" id="mjZ-Xq-3Em"/>
+                            <constraint firstItem="TrL-th-HEg" firstAttribute="width" secondItem="AbO-7W-hgy" secondAttribute="width" multiplier="0.8" id="sv7-G7-qrQ"/>
+                            <constraint firstItem="TrL-th-HEg" firstAttribute="centerX" secondItem="ZNm-Z6-ITo" secondAttribute="centerX" id="wMp-k0-uXS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="pHG-f8-ZY4"/>
+                    <connections>
+                        <outlet property="easyOutlet" destination="WQ5-OM-AIs" id="GdM-6G-of9"/>
+                        <outlet property="hardOutlet" destination="SpD-Ku-32V" id="aeX-xX-tkB"/>
+                        <outlet property="mediumOutlet" destination="EVw-6N-eh3" id="qFF-h8-1yt"/>
+                        <outlet property="timerOutlet" destination="zYR-ND-7KU" id="Inb-jL-tAe"/>
+                        <outlet property="yourChoiseOutlet" destination="vMC-CE-P9p" id="Ub3-mq-cd0"/>
+                        <segue destination="ler-ro-Jcm" kind="show" identifier="fromGameDifficultyVCToGameVC" id="aNP-e1-ms9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vf3-Z5-w0n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2056.9230769230767" y="32.701421800947863"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
