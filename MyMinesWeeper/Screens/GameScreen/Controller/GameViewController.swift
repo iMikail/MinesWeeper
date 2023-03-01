@@ -8,8 +8,8 @@
 import UIKit
 
 class GameViewController: UIViewController {
-    private let nickName = "SomePeople"//->login
     // MARK: - Variables
+    private let nickName = UserDefaults.standard.string(forKey: DefaultOptions.currentNickName) ?? "Незнакомец"
     private let cellIdentifier = "fieldCell"
     var minesWeeper: MinesWeeper!
     var gameTimer: GameTimer?
@@ -140,7 +140,9 @@ class GameViewController: UIViewController {
         if let gameTimer = gameTimer {
             message = "Ваше время: \(gameTimer.gameTime)c"
         }
-        let alert = UIAlertController(title: "Поздравляю вы выиграли!", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Поздравляю \(nickName) вы выиграли!",
+                                      message: message,
+                                      preferredStyle: .alert)
 
         let recordsAction = UIAlertAction(title: "Рекорды", style: .default) { [weak self] _ in
             self?.performSegue(withIdentifier: Segues.fromGameVCToRecordsVC.rawValue, sender: nil)
@@ -160,7 +162,9 @@ class GameViewController: UIViewController {
     }
 
     private func loserAlertController(message: String) -> UIAlertController {
-        let alert = UIAlertController(title: "Вы проиграли..", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "К сожалению \(nickName) вы проиграли.",
+                                      message: message,
+                                      preferredStyle: .alert)
 
         let skipAction = UIAlertAction(title: "Открыть поле", style: .default) { [weak self] _ in
             self?.showAllField()

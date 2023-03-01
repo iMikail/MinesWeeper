@@ -37,4 +37,8 @@ struct DefaultOptions {
 
     // MARK: - Count records in table
     static let countRecordsForEachSection = 7
+
+    static let currentNickName = "currentNickName"
+
+    private init() {}
 }

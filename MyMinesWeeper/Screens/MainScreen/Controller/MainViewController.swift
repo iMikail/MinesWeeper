@@ -8,7 +8,21 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    // MARK: - Variables
+    private let userDefault = UserDefaults.standard
+    private let greeting = "Приветствую тебя "
+    private var nickName: String? {
+        didSet {
+            setGreeting()
+        }
+    }
+
+    // MARK: - Outlets
+    @IBOutlet weak var greetingLabel: UILabel!
     // Визуал кнопок в сториборде
+    @IBOutlet weak var startGameOutlet: UIButton!
+
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,14 +30,48 @@ class MainViewController: UIViewController {
         navigationItem.backButtonTitle = navigationItem.title
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateNickName()
+    }
+
+    // MARK: - Actions
     @IBAction func startGameAction(_ sender: Any) {
-        performSegue(withIdentifier: Segues.fromMainVCToGameDifficultyVC.rawValue, sender: nil)
+        if nickName == nil {
+            createNickName()
+        } else {
+            userDefault.set(nickName, forKey: DefaultOptions.currentNickName)
+            performSegue(withIdentifier: Segues.fromMainVCToGameDifficultyVC.rawValue, sender: nil)
+        }
     }
 
     @IBAction func optionsAction(_ sender: Any) {
+        //deleted nick test
+        userDefault.set(nil, forKey: DefaultOptions.currentNickName)
+        updateNickName()
     }
 
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // MARK: - Private functions
+    private func createNickName() {
+        let alertManager = AlertManager()
+        let alert = alertManager.createNickNameAlert { [weak self] nickName in
+            guard let self = self else { return }
+
+            self.nickName = nickName
+            self.userDefault.setValue(nickName, forKey: DefaultOptions.currentNickName)
+        }
+        present(alert, animated: true)
+    }
+
+    private func updateNickName() {
+        nickName = userDefault.string(forKey: DefaultOptions.currentNickName)
+    }
+
+    private func setGreeting() {
+        if let nickName = nickName {
+            greetingLabel.text = greeting + nickName + "!"
+        } else {
+            greetingLabel.text = greeting + "незнакомец!"
+        }
     }
 }

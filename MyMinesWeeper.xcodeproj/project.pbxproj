@@ -17,6 +17,7 @@
 		A8B0BF4D291CF6AE009DC730 /* DifficultyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B0BF4C291CF6AE009DC730 /* DifficultyButton.swift */; };
 		A8C3CA5F290AD57C00048C5F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C3CA5E290AD57C00048C5F /* DefaultOptions.swift */; };
 		A8C616FB292D004E009EA25C /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C616FA292D004E009EA25C /* GameTimer.swift */; };
+		A8DD57B929AFA39D0051886F /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD57B829AFA39D0051886F /* AlertManager.swift */; };
 		A8DDFDB229124EDC0008A13C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DDFDB129124EDC0008A13C /* Protocols.swift */; };
 		A8E6DA5429200A5800BDE9E4 /* FieldSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6DA5329200A5800BDE9E4 /* FieldSize.swift */; };
 		A8E8B34629350C7A0034CF45 /* RecordsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8B34529350C7A0034CF45 /* RecordsManager.swift */; };
@@ -53,6 +54,7 @@
 		A8B0BF4C291CF6AE009DC730 /* DifficultyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButton.swift; sourceTree = "<group>"; };
 		A8C3CA5E290AD57C00048C5F /* DefaultOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultOptions.swift; sourceTree = "<group>"; };
 		A8C616FA292D004E009EA25C /* GameTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimer.swift; sourceTree = "<group>"; };
+		A8DD57B829AFA39D0051886F /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		A8DDFDB129124EDC0008A13C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		A8E6DA5329200A5800BDE9E4 /* FieldSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldSize.swift; sourceTree = "<group>"; };
 		A8E8B34529350C7A0034CF45 /* RecordsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsManager.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			children = (
 				A8E8B34429350C670034CF45 /* RecordsManager */,
 				A836A19429AF797B005CF9EC /* CoreData */,
+				A8DD57B829AFA39D0051886F /* AlertManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				A8E8B34629350C7A0034CF45 /* RecordsManager.swift in Sources */,
 				A889BB7C2932638800039845 /* RecordCell.swift in Sources */,
 				A836A19729AF7ABA005CF9EC /* StoredRecords.xcdatamodeld in Sources */,
+				A8DD57B929AFA39D0051886F /* AlertManager.swift in Sources */,
 				A8EB28D128EE70490065E9B6 /* GameViewController.swift in Sources */,
 				A899264C2907DF7F002A5982 /* MinesWeeper.swift in Sources */,
 				A836A19F29AF847C005CF9EC /* StoreRecords+CoreDataClass.swift in Sources */,
