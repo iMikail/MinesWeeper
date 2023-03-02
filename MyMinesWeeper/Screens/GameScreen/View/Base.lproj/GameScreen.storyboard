@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -68,7 +69,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T6G-iH-k29">
-                                <rect key="frame" x="152" y="144" width="110.5" height="24"/>
+                                <rect key="frame" x="152" y="114" width="110.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -121,6 +122,22 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="371-ji-Nf9"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsn-22-AN3">
+                                <rect key="frame" x="184.5" y="158" width="45" height="45"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="j1u-9y-3Nc"/>
+                                    <constraint firstAttribute="height" constant="45" id="txM-we-DJf"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemRedColor"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="flag" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="flagButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Ax-f4-ap7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
@@ -128,12 +145,14 @@
                             <constraint firstItem="T6G-iH-k29" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="AC7-X5-ssc"/>
                             <constraint firstItem="BBN-wu-9ua" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-50" id="EL1-ci-aq1"/>
                             <constraint firstItem="Xqu-nz-iTJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Evo-pi-tgY"/>
-                            <constraint firstItem="BBN-wu-9ua" firstAttribute="top" secondItem="T6G-iH-k29" secondAttribute="bottom" constant="50" id="HVa-H9-8h9"/>
+                            <constraint firstItem="lsn-22-AN3" firstAttribute="top" secondItem="T6G-iH-k29" secondAttribute="bottom" constant="20" id="HVa-H9-8h9"/>
                             <constraint firstItem="FQe-m4-7X9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="es2-nX-0v5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FQe-m4-7X9" secondAttribute="trailing" constant="20" id="fBU-1o-n8d"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xqu-nz-iTJ" secondAttribute="trailing" constant="40" id="lSQ-Eh-BEH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BBN-wu-9ua" secondAttribute="trailing" constant="20" id="oNz-no-ABc"/>
+                            <constraint firstItem="BBN-wu-9ua" firstAttribute="top" secondItem="lsn-22-AN3" secondAttribute="bottom" constant="15" id="p4a-uk-t3E"/>
                             <constraint firstItem="BBN-wu-9ua" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="u9p-u4-E4I"/>
+                            <constraint firstItem="lsn-22-AN3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vqQ-MI-24w"/>
                             <constraint firstItem="Xqu-nz-iTJ" firstAttribute="top" secondItem="BBN-wu-9ua" secondAttribute="bottom" constant="20" id="xpy-4b-JqV"/>
                             <constraint firstItem="FQe-m4-7X9" firstAttribute="top" secondItem="Xqu-nz-iTJ" secondAttribute="bottom" constant="20" id="yTv-O3-och"/>
                         </constraints>
@@ -142,6 +161,7 @@
                         <outlet property="bombCountOutlet" destination="qPN-11-5wg" id="5FC-KK-3O4"/>
                         <outlet property="collectionView" destination="BBN-wu-9ua" id="hNm-Ge-2zp"/>
                         <outlet property="fieldSizeOutlet" destination="8FQ-tX-CMa" id="7QK-D0-yr3"/>
+                        <outlet property="flagButtonOutlet" destination="lsn-22-AN3" id="zaT-lX-9RA"/>
                         <outlet property="freeCellsOutlet" destination="jGC-tA-fgP" id="Pvj-ko-fYx"/>
                         <outlet property="pauseButtonOutlet" destination="BvZ-TY-C9v" id="e0a-ND-gfa"/>
                         <outlet property="restartButtonOutlet" destination="iXi-wM-let" id="e6O-mI-al3"/>
@@ -163,11 +183,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="flag" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

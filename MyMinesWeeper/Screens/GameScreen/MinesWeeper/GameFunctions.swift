@@ -61,21 +61,18 @@ class GameFunctions {
             let rowMax = rowPoint + 1 < rowCount ? rowPoint + 1 : rowCount
 
             for section in sectionMin...sectionMax {
-                for row in rowMin...rowMax {
+                for row in rowMin...rowMax where !field[section][row].isFlag {
 
                     if field[section][row].indicator == 0 {
                         findEmptyCell(sectionPoint: section, rowPoint: row)
                     } else if field[section][row].indicator > 0 {
                         dict["\(section)&\(row)"] = [section, row]
                     }
-
                 }
             }
-
         }
 
         findEmptyCell(sectionPoint: section, rowPoint: row)
-
         dict.forEach { (_, value) in
             emptyCells.append(value)
         }

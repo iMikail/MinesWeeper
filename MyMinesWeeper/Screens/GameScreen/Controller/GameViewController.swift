@@ -8,35 +8,43 @@
 import UIKit
 
 class GameViewController: UIViewController {
-    // MARK: - Variables
-    private let nickName = UserDefaults.standard.string(forKey: DefaultOptions.currentNickName) ?? "Незнакомец"
+    // MARK: - Variables/Constants
+    private let nickName = UserDefaults.standard.string(forKey: DefaultOptions.currentNickName) ??
+                            DefaultOptions.defaultNickName
     private let cellIdentifier = "fieldCell"
     var minesWeeper: MinesWeeper!
-    var gameTimer: GameTimer?
+    private var gameTimer: GameTimer?
     private var field: FieldArray { minesWeeper.fieldBuilder.field }
+    private var isFlagMode = false {
+        didSet {
+            let image = isFlagMode ? "flag.fill" : "flag"
+            flagButtonOutlet.setImage(UIImage(systemName: image), for: .normal)
+        }
+    }
 
     private var isEndGame = false {
         didSet {
             pauseButtonOutlet.isEnabled = !isEndGame
+            flagButtonOutlet.isEnabled = !isEndGame
             gameTimer?.reset()
         }
     }
 
     private var isPlay = false {
         didSet {
-            if isPlay {
-                pauseButtonOutlet.setTitle("Пауза", for: .normal)
-            } else {
-                pauseButtonOutlet.setTitle("Продолжить", for: .normal)
-            }
+            let title = isPlay ? "Пауза" : "Продолжить"
+            pauseButtonOutlet.setTitle(title, for: .normal)
             pauseImageView.isHidden = isPlay
+            flagButtonOutlet.isEnabled = isPlay
             gameTimer?.isPlay = isPlay
         }
     }
+    // MARK: - Views
     private lazy var pauseImageView: UIImageView = UIImageView(frame: collectionView.frame)
 
     // MARK: - Outlets
     @IBOutlet weak var timeLabelOutlet: UILabel!
+    @IBOutlet weak var flagButtonOutlet: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pauseButtonOutlet: UIButton!
     @IBOutlet weak var restartButtonOutlet: UIButton!
@@ -58,7 +66,7 @@ class GameViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupPauseImageView()
-        setBorderFor(collectionView)
+        setupBorderFor(collectionView)
         collectionView.isHidden = false
     }
 
@@ -67,10 +75,14 @@ class GameViewController: UIViewController {
         isPlay = !isPlay
     }
 
+    @IBAction func flagButtonAction(_ sender: UIButton) {
+        toggleFlagMode()
+    }
     @IBAction func restartButtonAction(_ sender: Any) {
         minesWeeper.resetGame()
         isEndGame = false
         isPlay = false
+        isFlagMode = false
         setupTimerLabel()
         pauseButtonOutlet.setTitle("Начать", for: .normal)
         collectionView.reloadData()
@@ -95,13 +107,13 @@ class GameViewController: UIViewController {
 
     private func setupPauseImageView() {
         pauseImageView.isUserInteractionEnabled = true
-        setBorderFor(pauseImageView)
+        setupBorderFor(pauseImageView)
         pauseImageView.backgroundColor = collectionView.backgroundColor
         pauseImageView.image = UIImage(systemName: "questionmark.square.dashed")
         view.addSubview(pauseImageView)
     }
 
-    private func setBorderFor(_ view: UIView) {
+    private func setupBorderFor(_ view: UIView) {
         view.layer.borderWidth = 2.0
         view.layer.borderColor = UIColor.systemBlue.cgColor
     }
@@ -132,6 +144,10 @@ class GameViewController: UIViewController {
 
         let record = Record(time: time, nickName: nickName, type: type)
         RecordsManager.shared.addRecord(record)
+    }
+
+    private func toggleFlagMode() {
+        isFlagMode = !isFlagMode
     }
 
     // MARK: AlertController functions
@@ -223,27 +239,33 @@ extension GameViewController: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegate
 extension GameViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
         let section = indexPath.section
         let row = indexPath.row
-        minesWeeper.selectedCells(indexPath: indexPath)
 
-        if field[section][row].isMine {
-            if let cell = collectionView.cellForItem(at: indexPath) as? FieldViewCell {
-                cell.fieldCell = field[section][row]
-                present(loserAlertController(message: "Подорвался на бомбе"), animated: true)
-                isEndGame = true
+        switch isFlagMode {
+        case true:
+            if !field[section][row].isFlag {
+                minesWeeper.fieldBuilder.field[section][row].toggleFlag()
             }
-        } else {
-            collectionView.reloadData()
-            if minesWeeper.checkWin() {
-                saveTimeRecord()
-                present(winnerAlertController(), animated: true)
-                isEndGame = true
-                showAllField()
-
+        case false:
+            if field[section][row].isFlag {
+            minesWeeper.fieldBuilder.field[section][row].toggleFlag()
+            } else {
+                minesWeeper.selectedCells(indexPath: indexPath)
+                if field[section][row].isMine {
+                    present(loserAlertController(message: "Подорвался на бомбе"), animated: true)
+                    isEndGame = true
+                } else {
+                    if minesWeeper.checkWin() {
+                        saveTimeRecord()
+                        present(winnerAlertController(), animated: true)
+                        isEndGame = true
+                        showAllField()
+                    }
+                }
             }
         }
+        collectionView.reloadData()
     }
 }
 
