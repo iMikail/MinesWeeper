@@ -77,12 +77,6 @@ class GameFunctions {
             emptyCells.append(value)
         }
 
-        //test
-        print("dict: ", dict)
-        print("count: ", dict.count)
-        print("empty cellsDict: ", emptyCells)
-        print("count: ", emptyCells.count)
-        print("------")
         return emptyCells
     }
 }

@@ -93,7 +93,7 @@ class FieldViewCell: UICollectionViewCell {
         imageView.image = UIImage(systemName: fieldCell.flagImage)
         imageView.isHidden = false
     }
-
+    // FIXME: при алерте временно удаляются флаги + удаляются для пустых клеток
     private func removeFlagImage() {
         imageView.tintColor = .black
         imageView.image = nil

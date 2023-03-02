@@ -17,7 +17,7 @@ class MinesWeeper {
     var notSelectedCeelsCount: ((Int) -> Void)?
     var pressedCellsDict = [String: Int]() {
         didSet {
-            notSelectedCeelsCount?(fieldDifficulty.cellsCount - pressedCellsDict.count)
+            notSelectedCeelsCount?(fieldDifficulty.cellsCount - pressedCellsDict.count - fieldDifficulty.bombsCount)
         }
     }
 
@@ -74,10 +74,6 @@ class MinesWeeper {
     }
 
     public func checkWin() -> Bool {
-        //test
-        print("Need cells for win: ", fieldDifficulty.cellsCountForWin)
-        print("selected cells: ", pressedCellsDict.count)
-
         return fieldDifficulty.cellsCountForWin == pressedCellsDict.count ? true : false
     }
 }

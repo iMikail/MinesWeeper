@@ -15,10 +15,29 @@ class GameViewController: UIViewController {
     var minesWeeper: MinesWeeper!
     private var gameTimer: GameTimer?
     private var field: FieldArray { minesWeeper.fieldBuilder.field }
+
     private var isFlagMode = false {
         didSet {
             let image = isFlagMode ? "flag.fill" : "flag"
             flagButtonOutlet.setImage(UIImage(systemName: image), for: .normal)
+        }
+    }
+    private var flagCount = 0 {
+        didSet {
+            updateLabelText()
+            if flagCount >= minesWeeper.fieldDifficulty.bombsCount {
+                toggleFlagMode()
+                flagButtonOutlet.isEnabled = false
+            } else {
+                flagButtonOutlet.isEnabled = true
+            }
+        }
+    }
+    private var defusedBombsCount = 0 {
+        didSet {
+            if defusedBombsCount == minesWeeper.fieldDifficulty.bombsCount {
+                setupVictory()
+            }
         }
     }
 
@@ -29,7 +48,6 @@ class GameViewController: UIViewController {
             gameTimer?.reset()
         }
     }
-
     private var isPlay = false {
         didSet {
             let title = isPlay ? "Пауза" : "Продолжить"
@@ -89,9 +107,43 @@ class GameViewController: UIViewController {
     }
 
     // MARK: - Functions
-    func showAllField() {
+    private func toggleFlagMode() {
+        isFlagMode = !isFlagMode
+    }
+
+    private func switchCellFlag(forSection section: Int, inRow row: Int, isIncrease: Bool) {
+        minesWeeper.fieldBuilder.field[section][row].toggleFlag()
+        flagCount = isIncrease ? flagCount + 1 : flagCount - 1
+
+        if field[section][row].isMine {
+            defusedBombsCount = isIncrease ? defusedBombsCount + 1 : defusedBombsCount - 1
+        }
+    }
+
+    private func showAllField() {
         minesWeeper.fieldBuilder.deEnableAllCells()
         collectionView.reloadData()
+    }
+
+    private func saveTimeRecord() {
+        guard let time = gameTimer?.gameSeconds,
+              let type = minesWeeper.fieldDifficulty.recordType else { return }
+
+        let record = Record(time: time, nickName: nickName, type: type)
+        RecordsManager.shared.addRecord(record)
+    }
+
+    // MARK: Setup functions
+    private func setupVictory() {
+        saveTimeRecord()
+        present(winnerAlertController(), animated: true)
+        isEndGame = true
+        showAllField()
+    }
+
+    private func setupGameOver(alertMessage: String) {
+        present(loserAlertController(message: alertMessage), animated: true)
+        isEndGame = true
     }
 
     private func setupLabelText() {
@@ -99,10 +151,14 @@ class GameViewController: UIViewController {
         fieldSizeOutlet.text = "Размер поля: \(minesWeeper.fieldDifficulty.fieldSize.row)x" +
         "\(minesWeeper.fieldDifficulty.fieldSize.section)"
         bombCountOutlet.text = "Количество бомб: \(minesWeeper.fieldDifficulty.bombsCount)"
-        freeCellsOutlet.text = "Клеток осталось: \(String(minesWeeper.fieldDifficulty.cellsCount))"
+        freeCellsOutlet.text = "Свободных клеток: \(String(minesWeeper.fieldDifficulty.cellsCount))"
         minesWeeper.notSelectedCeelsCount = { [weak self] count in
-            self?.freeCellsOutlet.text = "Клеток осталось: \(String(describing: count))"
+            self?.freeCellsOutlet.text = "Свободных клеток: \(String(describing: count))"
         }
+    }
+
+    private func updateLabelText() {
+        bombCountOutlet.text = "Количество бомб: \(minesWeeper.fieldDifficulty.bombsCount - flagCount)"
     }
 
     private func setupPauseImageView() {
@@ -118,7 +174,6 @@ class GameViewController: UIViewController {
         view.layer.borderColor = UIColor.systemBlue.cgColor
     }
 
-    // MARK: timer/records functions
     private func setupTimer() {
         if let time = minesWeeper.fieldDifficulty.time {
             gameTimer = GameTimer(time)
@@ -136,18 +191,6 @@ class GameViewController: UIViewController {
         gameTimer.timerTime = { [weak self] time in
             self?.timeLabelOutlet.text = time
         }
-    }
-
-    private func saveTimeRecord() {
-        guard let time = gameTimer?.gameSeconds,
-              let type = minesWeeper.fieldDifficulty.recordType else { return }
-
-        let record = Record(time: time, nickName: nickName, type: type)
-        RecordsManager.shared.addRecord(record)
-    }
-
-    private func toggleFlagMode() {
-        isFlagMode = !isFlagMode
     }
 
     // MARK: AlertController functions
@@ -245,22 +288,18 @@ extension GameViewController: UICollectionViewDelegate {
         switch isFlagMode {
         case true:
             if !field[section][row].isFlag {
-                minesWeeper.fieldBuilder.field[section][row].toggleFlag()
+                switchCellFlag(forSection: section, inRow: row, isIncrease: true)
             }
         case false:
             if field[section][row].isFlag {
-            minesWeeper.fieldBuilder.field[section][row].toggleFlag()
+                switchCellFlag(forSection: section, inRow: row, isIncrease: false)
             } else {
                 minesWeeper.selectedCells(indexPath: indexPath)
                 if field[section][row].isMine {
-                    present(loserAlertController(message: "Подорвался на бомбе"), animated: true)
-                    isEndGame = true
+                    setupGameOver(alertMessage: "Подорвался на бомбе")
                 } else {
                     if minesWeeper.checkWin() {
-                        saveTimeRecord()
-                        present(winnerAlertController(), animated: true)
-                        isEndGame = true
-                        showAllField()
+                        setupVictory()
                     }
                 }
             }
@@ -272,7 +311,6 @@ extension GameViewController: UICollectionViewDelegate {
 // MARK: - GameTimerDelegate
 extension GameViewController: GameTimerDelegate {
     func timeIsOver() {
-        present(loserAlertController(message: "Вышло время"), animated: true)
-        isEndGame = true
+        setupGameOver(alertMessage: "Вышло время")
     }
 }
