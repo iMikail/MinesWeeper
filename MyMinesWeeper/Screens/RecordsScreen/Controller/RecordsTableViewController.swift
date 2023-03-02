@@ -29,7 +29,7 @@ class RecordsTableViewController: UITableViewController {
 
         let action = UIAction { [weak self] _ in
             if let type = RecordType(rawValue: section) {
-                RecordsManager.shared.resetRecords(forType: type)
+                RecordsManager.shared.removeRecords(forType: type)
                 self?.resetButtons[section].isEnabled = false
                 self?.tableView.reloadSections(IndexSet(integer: section), with: .fade)
             }

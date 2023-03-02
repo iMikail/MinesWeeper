@@ -40,15 +40,12 @@ class MainViewController: UIViewController {
         if nickName == nil {
             createNickName()
         } else {
-            userDefault.set(nickName, forKey: DefaultOptions.currentNickName)
             performSegue(withIdentifier: Segues.fromMainVCToGameDifficultyVC.rawValue, sender: nil)
         }
     }
 
     @IBAction func optionsAction(_ sender: Any) {
-        //deleted nick test
-        userDefault.set(nil, forKey: DefaultOptions.currentNickName)
-        updateNickName()
+        performSegue(withIdentifier: Segues.fromMainVCToOptionsVC.rawValue, sender: nil)
     }
 
     // MARK: - Private functions
@@ -71,7 +68,7 @@ class MainViewController: UIViewController {
         if let nickName = nickName {
             greetingLabel.text = greeting + nickName + "!"
         } else {
-            greetingLabel.text = greeting + "незнакомец!"
+            greetingLabel.text = greeting + DefaultOptions.defaultNickName + "!"
         }
     }
 }

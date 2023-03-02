@@ -8,16 +8,25 @@
 import UIKit
 
 final class AlertManager {
-    func createNickNameAlert(_ completionHandler: @escaping (_ nickName: String) -> Void) -> UIAlertController {
-        let alert = UIAlertController(title: "Для начала создайте ваш никнейм",
+    func createNickNameAlert(
+        nickName: String? = nil,
+        _ completionHandler: @escaping (_ nickName: String) -> Void) -> UIAlertController {
+
+        let alertTitle = nickName == nil ? "Для начала создайте ваш никнейм" : "Измените ваш никнейм"
+        let alert = UIAlertController(title: alertTitle,
                                       message: "Длинна не более 8 символов",
                                       preferredStyle: .alert)
 
         alert.addTextField { textFiled in
-            textFiled.placeholder = "инкогнито"
+            if nickName == nil {
+                textFiled.placeholder = "инкогнито"
+            } else {
+                textFiled.text = nickName
+            }
         }
 
-        let action = UIAlertAction(title: "Продолжить", style: .default) { _ in
+        let actionTitle = nickName == nil ? "Создать" : "Изменить"
+        let action = UIAlertAction(title: actionTitle, style: .default) { _ in
             if let nickName = alert.textFields?.first?.text {
                 completionHandler(nickName)
             }
@@ -36,6 +45,25 @@ final class AlertManager {
             }
         }
         alert.addAction(action)
+
+        if nickName != nil {
+            alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        }
+
+        return alert
+    }
+
+    func createWarningResetData(completion: @escaping (_ successful: Bool) -> Void) -> UIAlertController {
+        let alert = UIAlertController(title: "Внимание!",
+                                      message: "Вы хотите удалить никнейм и сбросить все рекорды?",
+                                      preferredStyle: .alert)
+        let success = UIAlertAction(title: "Да", style: .default) { _ in
+            completion(true)
+        }
+        let cansel = UIAlertAction(title: "Нет", style: .cancel)
+
+        alert.addAction(success)
+        alert.addAction(cansel)
 
         return alert
     }

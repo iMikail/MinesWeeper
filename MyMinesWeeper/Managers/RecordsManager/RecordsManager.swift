@@ -50,8 +50,13 @@ final class RecordsManager {
         records[record.type.rawValue].append(record)
     }
 
-    func resetRecords(forType type: RecordType) {
+    func removeRecords(forType type: RecordType) {
         records[type.rawValue].removeAll()
+    }
+
+    func resetAllRecords() {
+        RecordType.allCases.forEach { removeRecords(forType: $0) }
+        records = createAIRecords()
     }
 
     private func saveData() {
