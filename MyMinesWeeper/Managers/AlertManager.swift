@@ -55,7 +55,7 @@ final class AlertManager {
 
     func createWarningResetData(completion: @escaping (_ successful: Bool) -> Void) -> UIAlertController {
         let alert = UIAlertController(title: "Внимание!",
-                                      message: "Вы хотите удалить никнейм и сбросить все рекорды?",
+                                      message: "Это приведёт к первоначальным настройкам. Удалить все данные?",
                                       preferredStyle: .alert)
         let success = UIAlertAction(title: "Да", style: .default) { _ in
             completion(true)

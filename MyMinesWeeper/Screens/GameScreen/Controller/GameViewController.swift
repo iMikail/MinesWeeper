@@ -9,8 +9,8 @@ import UIKit
 
 class GameViewController: UIViewController {
     // MARK: - Variables/Constants
-    private let nickName = UserDefaults.standard.string(forKey: DefaultOptions.currentNickName) ??
-                            DefaultOptions.defaultNickName
+    private let nickName = UserDefaults.standard.string(forKey: UserDefaultsKeys.currentNickName.rawValue) ??
+                            UserDefaultsKeys.defaultNickName.rawValue
     private let cellIdentifier = "fieldCell"
     var minesWeeper: MinesWeeper!
     private var gameTimer: GameTimer?

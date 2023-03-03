@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="5QC-JE-3ks">
-                                <rect key="frame" x="65" y="147" width="260" height="150"/>
+                                <rect key="frame" x="65" y="147.00000000000003" width="260" height="264.66666666666674"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tF4-w1-F4u">
                                         <rect key="frame" x="0.0" y="0.0" width="260" height="60"/>
@@ -39,7 +39,7 @@
                                             <action selector="changeNickAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ZcE-cN-fBQ"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILq-J7-mYd">
+                                    <button opaque="NO" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILq-J7-mYd">
                                         <rect key="frame" x="0.0" y="90" width="260" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="6Fm-fN-JYn"/>
@@ -58,6 +58,44 @@
                                             <action selector="enableSoundAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Tn1-tO-r47"/>
                                         </connections>
                                     </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SK3-ig-cbp">
+                                        <rect key="frame" x="0.0" y="180" width="260" height="84.666666666666686"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Таймер по умолчанию:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iu-IF-D51">
+                                                <rect key="frame" x="10" y="8.0000000000000018" width="240" height="27.666666666666671"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                <color key="textColor" systemColor="systemIndigoColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DEO-MA-dXz">
+                                                <rect key="frame" x="53.000000000000014" y="45.666666666666686" width="154.33333333333337" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выкл." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QL-oQ-k9o">
+                                                        <rect key="frame" x="0.0" y="5.3333333333333144" width="45.666666666666664" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" systemColor="systemIndigoColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GRC-OK-USf">
+                                                        <rect key="frame" x="55.666666666666657" y="0.0" width="51" height="31"/>
+                                                        <color key="onTintColor" systemColor="systemCyanColor"/>
+                                                        <color key="thumbTintColor" systemColor="systemIndigoColor"/>
+                                                        <connections>
+                                                            <action selector="switchTimerAction:" destination="Y6W-OH-hqX" eventType="valueChanged" id="sN9-zi-gof"/>
+                                                        </connections>
+                                                    </switch>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вкл." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFU-pD-uoJ">
+                                                        <rect key="frame" x="120.66666666666667" y="5.3333333333333144" width="33.666666666666671" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" systemColor="systemIndigoColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.62359595300000004" green="0.62080651519999996" blue="0.72289347650000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ilc-qx-LZI">
@@ -91,6 +129,8 @@
                     </view>
                     <connections>
                         <outlet property="enableSoundOutlet" destination="ILq-J7-mYd" id="76V-Oe-L44"/>
+                        <outlet property="switchTimerOutlet" destination="GRC-OK-USf" id="4jo-Jl-jWc"/>
+                        <outlet property="timerStackOutlet" destination="SK3-ig-cbp" id="jik-7P-DED"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -99,6 +139,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

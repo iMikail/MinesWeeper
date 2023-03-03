@@ -38,9 +38,21 @@ struct DefaultOptions {
     // MARK: - Count records in table
     static let countRecordsForEachSection = 7
 
-    // MARK: - NickName
-    static let currentNickName = "currentNickName"
-    static let defaultNickName = "незнакомец"
-
     private init() {}
+}
+
+// MARK: - Segues identifiers
+enum Segues: String {
+    case fromMainVCToGameDifficultyVC
+    case fromGameDifficultyVCToGameVC
+    case fromGameVCToRecordsVC
+    case fromMainVCToOptionsVC
+}
+
+// MARK: - UserDefaults keys
+enum UserDefaultsKeys: String {
+    case currentNickName
+    case defaultNickName = "незнакомец"
+    case timerOptions
+    case notFirstStartApp
 }

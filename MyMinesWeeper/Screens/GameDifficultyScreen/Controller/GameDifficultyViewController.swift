@@ -42,6 +42,7 @@ class GameDifficultyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        timerOutlet.isOn = UserDefaults.standard.bool(forKey: UserDefaultsKeys.timerOptions.rawValue)
         setViews()
     }
 
