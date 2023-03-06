@@ -56,3 +56,17 @@ enum UserDefaultsKeys: String {
     case timerOptions
     case notFirstStartApp
 }
+
+enum ImageName: String {
+    case bombBoomImage
+    case bombImage
+    case defusedBombImage
+    case flagImage
+    case startWarningImage
+    case flagButtonImage
+    case pauseImage
+    case timerOnImage
+    case timerOffImage
+    case backgroundGeneral
+    case backgroundRecords
+}

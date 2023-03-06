@@ -15,12 +15,15 @@ struct FieldCell {
         }
     }
 
-    var mineImage = "staroflife.fill"
+    var mineImage = ImageName.bombImage.rawValue
     var isMine = false
     var isSelectedMine = false
 
-    var flagImage = "flag.fill"
+    var flagImage = ImageName.flagImage.rawValue
     var isFlag = false
+
+    var bombBoomImage = ImageName.bombBoomImage.rawValue
+    var defusedBombImage = ImageName.defusedBombImage.rawValue
 
     public func countMinesAround() -> String {
         return String(indicator)

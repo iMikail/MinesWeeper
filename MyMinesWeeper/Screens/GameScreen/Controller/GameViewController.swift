@@ -18,8 +18,11 @@ class GameViewController: UIViewController {
 
     private var isFlagMode = false {
         didSet {
-            let image = isFlagMode ? "flag.fill" : "flag"
-            flagButtonOutlet.setImage(UIImage(systemName: image), for: .normal)
+            if isFlagMode {
+                setupBorderFor(flagButtonOutlet, size: 2, color: .red)
+            } else {
+                setupBorderFor(flagButtonOutlet, size: 1, color: .gray)
+            }
         }
     }
     private var flagCount = 0 {
@@ -53,30 +56,39 @@ class GameViewController: UIViewController {
             let title = isPlay ? "Пауза" : "Продолжить"
             pauseButtonOutlet.setTitle(title, for: .normal)
             pauseImageView.isHidden = isPlay
+            collectionView.isHidden = !isPlay
+            updatePauseImage(isDefaultState: false)
             flagButtonOutlet.isEnabled = isPlay
             gameTimer?.isPlay = isPlay
         }
     }
+
     // MARK: - Views
     private lazy var pauseImageView: UIImageView = UIImageView(frame: collectionView.frame)
 
     // MARK: - Outlets
+    @IBOutlet weak var timerImageOutlet: UIImageView!
     @IBOutlet weak var timeLabelOutlet: UILabel!
-    @IBOutlet weak var flagButtonOutlet: UIButton!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var pauseButtonOutlet: UIButton!
-    @IBOutlet weak var restartButtonOutlet: UIButton!
 
-    @IBOutlet weak var fieldSizeOutlet: UILabel!
+    @IBOutlet weak var infoStackOutlet: UIStackView!
+    @IBOutlet weak var flagButtonOutlet: UIButton!
     @IBOutlet weak var bombCountOutlet: UILabel!
+    @IBOutlet weak var fieldSizeImageOutlet: UIImageView!
+    @IBOutlet weak var fieldSizeOutlet: UILabel!
+    @IBOutlet weak var freeCellsImageOutlet: UIImageView!
     @IBOutlet weak var freeCellsOutlet: UILabel!
+
+    @IBOutlet weak var collectionView: UICollectionView!
+
+    @IBOutlet weak var pauseButtonOutlet: UIButton!
+    @IBOutlet weak var descriptionButtonOutlet: UIButton!
+    @IBOutlet weak var restartButtonOutlet: UIButton!
 
     // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Сапёр"
 
-        collectionView.backgroundColor = .systemGray5
+        setupInfoStackViews()
         setupTimer()
         setupLabelText()
     }
@@ -84,8 +96,8 @@ class GameViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupPauseImageView()
-        setupBorderFor(collectionView)
-        collectionView.isHidden = false
+        setupBorderFor(collectionView, size: 1, color: .darkGray)
+        collectionView.layer.cornerRadius = 5
     }
 
     // MARK: - Actions
@@ -96,14 +108,20 @@ class GameViewController: UIViewController {
     @IBAction func flagButtonAction(_ sender: UIButton) {
         toggleFlagMode()
     }
+
     @IBAction func restartButtonAction(_ sender: Any) {
         minesWeeper.resetGame()
         isEndGame = false
         isPlay = false
         isFlagMode = false
-        setupTimerLabel()
+        setupTimerStack()
+        updatePauseImage(isDefaultState: true)
         pauseButtonOutlet.setTitle("Начать", for: .normal)
         collectionView.reloadData()
+    }
+
+    @IBAction func descriptionButtonAction(_ sender: UIButton) {
+        //descr alert
     }
 
     // MARK: - Functions
@@ -147,31 +165,35 @@ class GameViewController: UIViewController {
     }
 
     private func setupLabelText() {
-        setupTimerLabel()
-        fieldSizeOutlet.text = "Размер поля: \(minesWeeper.fieldDifficulty.fieldSize.row)x" +
+        setupTimerStack()
+        fieldSizeOutlet.text = "\(minesWeeper.fieldDifficulty.fieldSize.row)x" +
         "\(minesWeeper.fieldDifficulty.fieldSize.section)"
-        bombCountOutlet.text = "Количество бомб: \(minesWeeper.fieldDifficulty.bombsCount)"
-        freeCellsOutlet.text = "Свободных клеток: \(String(minesWeeper.fieldDifficulty.cellsCount))"
+        bombCountOutlet.text = "x\(minesWeeper.fieldDifficulty.bombsCount)"
+        freeCellsOutlet.text = "x\(String(minesWeeper.fieldDifficulty.cellsCount))"
         minesWeeper.notSelectedCeelsCount = { [weak self] count in
-            self?.freeCellsOutlet.text = "Свободных клеток: \(String(describing: count))"
+            self?.freeCellsOutlet.text = "x\(String(describing: count))"
         }
     }
 
     private func updateLabelText() {
-        bombCountOutlet.text = "Количество бомб: \(minesWeeper.fieldDifficulty.bombsCount - flagCount)"
+        bombCountOutlet.text = "x\(minesWeeper.fieldDifficulty.bombsCount - flagCount)"
     }
 
     private func setupPauseImageView() {
         pauseImageView.isUserInteractionEnabled = true
-        setupBorderFor(pauseImageView)
-        pauseImageView.backgroundColor = collectionView.backgroundColor
-        pauseImageView.image = UIImage(systemName: "questionmark.square.dashed")
+        pauseImageView.backgroundColor = .clear
+        updatePauseImage(isDefaultState: true)
         view.addSubview(pauseImageView)
     }
 
-    private func setupBorderFor(_ view: UIView) {
-        view.layer.borderWidth = 2.0
-        view.layer.borderColor = UIColor.systemBlue.cgColor
+    private func updatePauseImage(isDefaultState: Bool) {
+        let image = isDefaultState ? ImageName.startWarningImage.rawValue : ImageName.pauseImage.rawValue
+        pauseImageView.image = UIImage(named: image)
+    }
+
+    private func setupBorderFor(_ view: UIView, size: CGFloat, color: UIColor) {
+        view.layer.borderWidth = size
+        view.layer.borderColor = color.cgColor
     }
 
     private func setupTimer() {
@@ -181,16 +203,25 @@ class GameViewController: UIViewController {
         }
     }
 
-    private func setupTimerLabel() {
+    private func setupTimerStack() {
         guard let gameTimer = gameTimer else {
             timeLabelOutlet.isHidden = true
+            timerImageOutlet.image = UIImage(named: ImageName.timerOffImage.rawValue)
             print("GameTimer = nil")
             return
         }
+        timerImageOutlet.image = UIImage(named: ImageName.timerOnImage.rawValue)
         timeLabelOutlet.text = gameTimer.originTime
         gameTimer.timerTime = { [weak self] time in
             self?.timeLabelOutlet.text = time
         }
+    }
+
+    private func setupInfoStackViews() {
+        setupBorderFor(flagButtonOutlet, size: 1, color: .gray)
+        flagButtonOutlet.layer.cornerRadius = flagButtonOutlet.bounds.height / 2
+
+        setupBorderFor(freeCellsImageOutlet, size: 2, color: .black)
     }
 
     // MARK: AlertController functions

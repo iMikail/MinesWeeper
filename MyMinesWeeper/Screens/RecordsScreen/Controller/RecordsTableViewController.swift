@@ -12,10 +12,18 @@ class RecordsTableViewController: UITableViewController {
 
     var resetButtons: [UIButton]!
 
+    lazy var backgroundView: UIImageView = {
+        let view = UIImageView(frame: tableView.frame)
+        view.image = UIImage(named: ImageName.backgroundRecords.rawValue)
+        view.contentMode = .scaleToFill
+
+        return view
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         resetButtons = Array(repeating: createResetButton(), count: RecordType.allCases.count)
+        tableView.backgroundView = backgroundView
     }
 
     private func setupResetButton(forSection section: Int) {

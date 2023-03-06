@@ -36,7 +36,7 @@ class FieldViewCell: UICollectionViewCell {
         textLabel.isHidden = true
         layer.borderWidth = 1.0
         layer.borderColor = UIColor.black.cgColor
-        layer.backgroundColor = UIColor.gray.cgColor
+        layer.backgroundColor = UIColor.lightGray.cgColor
         updateFlagImage()
     }
 
@@ -65,16 +65,18 @@ class FieldViewCell: UICollectionViewCell {
             removeFlagImage()
         }
         if fieldCell.isMine {
-            imageView.image = UIImage(systemName: fieldCell.mineImage)
+            imageView.image = UIImage(named: fieldCell.mineImage)
             imageView.isHidden = false
 
             if fieldCell.isSelectedMine {
+                imageView.image = UIImage(named: fieldCell.bombBoomImage)
                 layer.backgroundColor = UIColor.systemRed.cgColor
             } else {
                 layer.backgroundColor = UIColor.systemGray3.cgColor
             }
 
             if fieldCell.isFlag {
+                imageView.image = UIImage(named: fieldCell.defusedBombImage)
                 layer.backgroundColor = UIColor.systemGreen.cgColor
             }
         }
@@ -90,10 +92,10 @@ class FieldViewCell: UICollectionViewCell {
 
     private func setupFlagImage() {
         imageView.tintColor = .red
-        imageView.image = UIImage(systemName: fieldCell.flagImage)
+        imageView.image = UIImage(named: fieldCell.flagImage)
         imageView.isHidden = false
     }
-    // FIXME: при алерте временно удаляются флаги + удаляются для пустых клеток
+
     private func removeFlagImage() {
         imageView.tintColor = .black
         imageView.image = nil

@@ -26,10 +26,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Меню"
-        navigationItem.backButtonTitle = navigationItem.title
+        navigationItem.backButtonTitle = "Меню"
         setFirstOptions()
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
