@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="startWarningImage" translatesAutoresizingMaskIntoConstraints="NO" id="HpB-Oh-vXR">
-                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <rect key="frame" x="15" y="48" width="399" height="814"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.25984639862571102" green="0.25984639862571102" blue="0.25984639862571102" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.19137066599999999" green="0.19137066599999999" blue="0.19137066599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="HpB-Oh-vXR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WbY-5P-Jxt"/>
+                            <constraint firstItem="HpB-Oh-vXR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="WbY-5P-Jxt"/>
                             <constraint firstItem="HpB-Oh-vXR" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="bVa-4u-AfZ"/>
                             <constraint firstItem="HpB-Oh-vXR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="lEP-hF-O4q"/>
                             <constraint firstItem="HpB-Oh-vXR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nWb-Yx-1Ur"/>

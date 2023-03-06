@@ -7,7 +7,7 @@
 
 struct DefaultOptions {
     // MARK: - Min/Max
-    static let minFieldSize = 10
+    static let minFieldSize = 15
     static let maxFieldSize = 100
     static let minBombsCount = 10
     static let minTime = 60

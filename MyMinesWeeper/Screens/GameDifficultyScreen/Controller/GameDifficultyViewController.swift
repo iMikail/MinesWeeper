@@ -11,25 +11,9 @@ class GameDifficultyViewController: UIViewController {
     // MARK: - Variables
     private var fieldDifficulty = FieldDifficulty(fieldSize: FieldSize(section: DefaultOptions.minFieldSize,
                                                                row: DefaultOptions.minFieldSize),
-                                          bombsCount: DefaultOptions.minBombsCount) {
-        // check min/max size & bombs
+                                                  bombsCount: DefaultOptions.minBombsCount) {
         didSet {
-            print(" ->old options:\n\(FieldDifficulty.description(forFieldDifficulty: fieldDifficulty))")
-            fieldDifficulty.fieldSize.section = resizeValue(fieldDifficulty.fieldSize.section,
-                                                            minValue: DefaultOptions.minFieldSize,
-                                                            maxValue: DefaultOptions.maxFieldSize)
-            fieldDifficulty.fieldSize.row = resizeValue(fieldDifficulty.fieldSize.row,
-                                                            minValue: DefaultOptions.minFieldSize,
-                                                            maxValue: DefaultOptions.maxFieldSize)
-            fieldDifficulty.bombsCount = resizeValue(fieldDifficulty.bombsCount,
-                                                     minValue: DefaultOptions.minBombsCount,
-                                                     maxValue: fieldDifficulty.maxBombsCount)
-            if let time = fieldDifficulty.time {
-                fieldDifficulty.time = resizeValue(time,
-                                                   minValue: DefaultOptions.minTime,
-                                                   maxValue: DefaultOptions.maxTime)
-            }
-            print(" ->new options:\n\(FieldDifficulty.description(forFieldDifficulty: fieldDifficulty))")
+            resizingIfNeeded()
         }
     }
 
@@ -89,6 +73,25 @@ class GameDifficultyViewController: UIViewController {
         gameVC.minesWeeper = MinesWeeper(fieldDifficulty: fieldDifficulty)
     }
 
+    private func resizingIfNeeded() {
+        print(" ->old options:\n\(FieldDifficulty.description(forFieldDifficulty: fieldDifficulty))")
+        fieldDifficulty.fieldSize.section = resizeValue(fieldDifficulty.fieldSize.section,
+                                                        minValue: DefaultOptions.minFieldSize,
+                                                        maxValue: DefaultOptions.maxFieldSize)
+        fieldDifficulty.fieldSize.row = resizeValue(fieldDifficulty.fieldSize.row,
+                                                        minValue: DefaultOptions.minFieldSize,
+                                                        maxValue: DefaultOptions.maxFieldSize)
+        fieldDifficulty.bombsCount = resizeValue(fieldDifficulty.bombsCount,
+                                                 minValue: DefaultOptions.minBombsCount,
+                                                 maxValue: fieldDifficulty.maxBombsCount)
+        if let time = fieldDifficulty.time {
+            fieldDifficulty.time = resizeValue(time,
+                                               minValue: DefaultOptions.minTime,
+                                               maxValue: DefaultOptions.maxTime)
+        }
+        print(" ->new options:\n\(FieldDifficulty.description(forFieldDifficulty: fieldDifficulty))")
+    }
+
     private func resizeValue(_ value: Int, minValue: Int, maxValue: Int) -> Int {
         return min(max(value, minValue), maxValue)
     }
@@ -121,14 +124,14 @@ class GameDifficultyViewController: UIViewController {
             self?.configureTextField(textField, text: "Ширина поля:")
         }
         alert.addTextField { [weak self] textField in
-            self?.configureTextField(textField, placeholder: "10-100", isEnable: true)
+            self?.configureTextField(textField, placeholder: "15-100", isEnable: true)
         }
 
         alert.addTextField { [weak self] textField in
             self?.configureTextField(textField, text: "Высота поля:")
         }
         alert.addTextField { [weak self] textField in
-            self?.configureTextField(textField, placeholder: "10-100", isEnable: true)
+            self?.configureTextField(textField, placeholder: "15-100", isEnable: true)
         }
 
         alert.addTextField { [weak self] textField in

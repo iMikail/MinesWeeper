@@ -16,15 +16,7 @@ class GameViewController: UIViewController {
     private var gameTimer: GameTimer?
     private var field: FieldArray { minesWeeper.fieldBuilder.field }
 
-    private var isFlagMode = false {
-        didSet {
-            if isFlagMode {
-                setupBorderFor(flagButtonOutlet, size: 2, color: .red)
-            } else {
-                setupBorderFor(flagButtonOutlet, size: 1, color: .gray)
-            }
-        }
-    }
+    private var isFlagMode = false
     private var flagCount = 0 {
         didSet {
             updateLabelText()
@@ -114,6 +106,7 @@ class GameViewController: UIViewController {
         isEndGame = false
         isPlay = false
         isFlagMode = false
+        flagCount = 0
         setupTimerStack()
         updatePauseImage(isDefaultState: true)
         pauseButtonOutlet.setTitle("Начать", for: .normal)
@@ -121,12 +114,17 @@ class GameViewController: UIViewController {
     }
 
     @IBAction func descriptionButtonAction(_ sender: UIButton) {
-        //descr alert
+        //descr alert/VC
     }
 
     // MARK: - Functions
     private func toggleFlagMode() {
         isFlagMode = !isFlagMode
+        if isFlagMode {
+            setupBorderFor(flagButtonOutlet, size: 2, color: .red)
+        } else {
+            setupBorderFor(flagButtonOutlet, size: 1, color: .gray)
+        }
     }
 
     private func switchCellFlag(forSection section: Int, inRow row: Int, isIncrease: Bool) {
@@ -207,9 +205,9 @@ class GameViewController: UIViewController {
         guard let gameTimer = gameTimer else {
             timeLabelOutlet.isHidden = true
             timerImageOutlet.image = UIImage(named: ImageName.timerOffImage.rawValue)
-            print("GameTimer = nil")
             return
         }
+
         timerImageOutlet.image = UIImage(named: ImageName.timerOnImage.rawValue)
         timeLabelOutlet.text = gameTimer.originTime
         gameTimer.timerTime = { [weak self] time in
