@@ -9,8 +9,8 @@ import UIKit
 // Образец: https://www.credera.com/insights/building-a-multi-directional-uicollectionview-in-swift
 
 class FieldViewLayout: UICollectionViewLayout {
-    let cellHeight = 25.0
-    let cellWidth = 25.0
+    let cellHeight = 30.0
+    let cellWidth = 30.0
     var cellAttrsDictionary = [IndexPath: UICollectionViewLayoutAttributes]()
     var contentSize = CGSize.zero
 

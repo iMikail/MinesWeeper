@@ -12,10 +12,18 @@ class RecordsTableViewController: UITableViewController {
 
     var resetButtons: [UIButton]!
 
+    lazy var backgroundView: UIImageView = {
+        let view = UIImageView(frame: tableView.frame)
+        view.image = UIImage(named: ImageName.backgroundRecords.rawValue)
+        view.contentMode = .scaleToFill
+
+        return view
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         resetButtons = Array(repeating: createResetButton(), count: RecordType.allCases.count)
+        tableView.backgroundView = backgroundView
     }
 
     private func setupResetButton(forSection section: Int) {
@@ -29,7 +37,7 @@ class RecordsTableViewController: UITableViewController {
 
         let action = UIAction { [weak self] _ in
             if let type = RecordType(rawValue: section) {
-                RecordsManager.shared.resetRecords(forType: type)
+                RecordsManager.shared.removeRecords(forType: type)
                 self?.resetButtons[section].isEnabled = false
                 self?.tableView.reloadSections(IndexSet(integer: section), with: .fade)
             }

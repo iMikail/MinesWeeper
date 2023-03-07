@@ -6,13 +6,13 @@
 //
 import Foundation
 
-enum RecordType: Int, CaseIterable {
+enum RecordType: Int, CaseIterable, Codable {
     case easy
     case medium
     case hard
 }
 
-class Record {
+struct Record: Codable {
     let type: RecordType
     let time: Int
     var timeString: String { GameTimer.getStringTime(time) }
@@ -27,5 +27,4 @@ class Record {
         dateFormatter.dateFormat = "dd.MM.yy"
         self.date = dateFormatter.string(from: Date())
     }
-
 }

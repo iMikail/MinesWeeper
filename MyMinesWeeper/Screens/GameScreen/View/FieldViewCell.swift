@@ -25,7 +25,7 @@ class FieldViewCell: UICollectionViewCell {
     // reload all view from cell
     public func reloadView() {
         isUserInteractionEnabled = !fieldCell.isPressed
-        self.layer.backgroundColor = UIColor.white.cgColor
+        layer.backgroundColor = UIColor.white.cgColor
         reloadTextLabel()
         reloadImageView()
     }
@@ -34,9 +34,10 @@ class FieldViewCell: UICollectionViewCell {
         isUserInteractionEnabled = true
         imageView.isHidden = true
         textLabel.isHidden = true
-        self.layer.borderWidth = 1.0
-        self.layer.borderColor = UIColor.black.cgColor
-        self.layer.backgroundColor = UIColor.gray.cgColor
+        layer.borderWidth = 1.0
+        layer.borderColor = UIColor.black.cgColor
+        layer.backgroundColor = UIColor.lightGray.cgColor
+        updateFlagImage()
     }
 
     private func reloadTextLabel() {
@@ -60,14 +61,44 @@ class FieldViewCell: UICollectionViewCell {
     }
 
     private func reloadImageView() {
+        if fieldCell.isFlag {
+            removeFlagImage()
+        }
         if fieldCell.isMine {
-            imageView.image = UIImage(systemName: fieldCell.mineImage)
+            imageView.image = UIImage(named: fieldCell.mineImage)
             imageView.isHidden = false
+
             if fieldCell.isSelectedMine {
-                self.layer.backgroundColor = UIColor.systemRed.cgColor
+                imageView.image = UIImage(named: fieldCell.bombBoomImage)
+                layer.backgroundColor = UIColor.systemRed.cgColor
             } else {
-                self.layer.backgroundColor = UIColor.systemGray3.cgColor
+                layer.backgroundColor = UIColor.systemGray3.cgColor
+            }
+
+            if fieldCell.isFlag {
+                imageView.image = UIImage(named: fieldCell.defusedBombImage)
+                layer.backgroundColor = UIColor.systemGreen.cgColor
             }
         }
+    }
+
+    private func updateFlagImage() {
+        if fieldCell.isFlag {
+            setupFlagImage()
+        } else {
+            removeFlagImage()
+        }
+    }
+
+    private func setupFlagImage() {
+        imageView.tintColor = .red
+        imageView.image = UIImage(named: fieldCell.flagImage)
+        imageView.isHidden = false
+    }
+
+    private func removeFlagImage() {
+        imageView.tintColor = .black
+        imageView.image = nil
+        imageView.isHidden = true
     }
 }
