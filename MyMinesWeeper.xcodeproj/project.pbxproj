@@ -11,6 +11,8 @@
 		A836A19729AF7ABA005CF9EC /* StoredRecords.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A836A19529AF7ABA005CF9EC /* StoredRecords.xcdatamodeld */; };
 		A836A19F29AF847C005CF9EC /* StoreRecords+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836A19D29AF847C005CF9EC /* StoreRecords+CoreDataClass.swift */; };
 		A836A1A029AF847C005CF9EC /* StoreRecords+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836A19E29AF847C005CF9EC /* StoreRecords+CoreDataProperties.swift */; };
+		A864FBF529B70E36004D4F5A /* InfoScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A864FBF429B70E36004D4F5A /* InfoScreen.storyboard */; };
+		A864FBFA29B70E80004D4F5A /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A864FBF929B70E80004D4F5A /* InfoViewController.swift */; };
 		A889BB7A29325EA700039845 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = A889BB7929325EA700039845 /* Record.swift */; };
 		A889BB7C2932638800039845 /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A889BB7B2932638800039845 /* RecordCell.swift */; };
 		A899264C2907DF7F002A5982 /* MinesWeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A899264B2907DF7F002A5982 /* MinesWeeper.swift */; };
@@ -49,6 +51,8 @@
 		A836A19629AF7ABA005CF9EC /* StoredRecords.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoredRecords.xcdatamodel; sourceTree = "<group>"; };
 		A836A19D29AF847C005CF9EC /* StoreRecords+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreRecords+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A836A19E29AF847C005CF9EC /* StoreRecords+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreRecords+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A864FBF429B70E36004D4F5A /* InfoScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InfoScreen.storyboard; sourceTree = "<group>"; };
+		A864FBF929B70E80004D4F5A /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		A889BB7929325EA700039845 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		A889BB7B2932638800039845 /* RecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
 		A899264B2907DF7F002A5982 /* MinesWeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinesWeeper.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 				A8FB0AEC29017F24009AA65C /* GameScreen */,
 				A8EAEBD7291BF8CB00574804 /* RecordsScreen */,
 				A8DD57BA29B07A330051886F /* OptionsScreen */,
+				A864FBF629B70E42004D4F5A /* InfoScreen */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -135,6 +140,31 @@
 				A8DD57B829AFA39D0051886F /* AlertManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		A864FBF629B70E42004D4F5A /* InfoScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A864FBF729B70E4F004D4F5A /* View */,
+				A864FBF829B70E68004D4F5A /* Controller */,
+			);
+			path = InfoScreen;
+			sourceTree = "<group>";
+		};
+		A864FBF729B70E4F004D4F5A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A864FBF429B70E36004D4F5A /* InfoScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A864FBF829B70E68004D4F5A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A864FBF929B70E80004D4F5A /* InfoViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		A889BB7829325D8300039845 /* Model */ = {
@@ -469,6 +499,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A864FBF529B70E36004D4F5A /* InfoScreen.storyboard in Resources */,
 				A8DD57BE29B07A890051886F /* OptionsScreen.storyboard in Resources */,
 				A8EB28D928EE704D0065E9B6 /* LaunchScreen.storyboard in Resources */,
 				A8EAEBDD291BF95300574804 /* RecordsScreen.storyboard in Resources */,
@@ -535,6 +566,7 @@
 				A8B0BF4D291CF6AE009DC730 /* DifficultyButton.swift in Sources */,
 				A8FB0AF029017FA9009AA65C /* MainViewController.swift in Sources */,
 				A8E6DA5429200A5800BDE9E4 /* FieldSize.swift in Sources */,
+				A864FBFA29B70E80004D4F5A /* InfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

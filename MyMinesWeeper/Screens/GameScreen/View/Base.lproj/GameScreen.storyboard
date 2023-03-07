@@ -194,27 +194,53 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1U-Wt-hI3">
-                                <rect key="frame" x="147" y="666" width="120" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="VsE-Jl-ZF4"/>
-                                    <constraint firstAttribute="height" constant="35" id="cs8-5w-JLA"/>
-                                </constraints>
-                                <color key="tintColor" systemColor="systemCyanColor"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <size key="titleShadowOffset" width="2" height="2"/>
-                                <state key="normal" title="Инфо"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Инфо">
-                                    <backgroundConfiguration key="background" strokeWidth="2">
-                                        <color key="backgroundColor" systemColor="systemMintColor"/>
-                                        <color key="strokeColor" systemColor="systemIndigoColor"/>
-                                    </backgroundConfiguration>
-                                    <color key="baseForegroundColor" systemColor="systemIndigoColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="descriptionButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Mi-15-Pmw"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4eg-sW-VOB">
+                                <rect key="frame" x="79.5" y="666" width="255" height="35"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1U-Wt-hI3">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="VsE-Jl-ZF4"/>
+                                            <constraint firstAttribute="height" constant="35" id="cs8-5w-JLA"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="systemCyanColor"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <size key="titleShadowOffset" width="2" height="2"/>
+                                        <state key="normal" title="Инфо"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Инфо">
+                                            <backgroundConfiguration key="background" strokeWidth="2">
+                                                <color key="backgroundColor" systemColor="systemMintColor"/>
+                                                <color key="strokeColor" systemColor="systemIndigoColor"/>
+                                            </backgroundConfiguration>
+                                            <color key="baseForegroundColor" systemColor="systemIndigoColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="descriptionButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Mi-15-Pmw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OX5-CR-pzr">
+                                        <rect key="frame" x="135" y="0.0" width="120" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="lN3-qT-moT"/>
+                                            <constraint firstAttribute="height" constant="35" id="zqa-Dx-wOd"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="systemCyanColor"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <size key="titleShadowOffset" width="2" height="2"/>
+                                        <state key="normal" title="Инфо"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Меню">
+                                            <backgroundConfiguration key="background" strokeWidth="2">
+                                                <color key="backgroundColor" systemColor="systemMintColor"/>
+                                                <color key="strokeColor" systemColor="systemIndigoColor"/>
+                                            </backgroundConfiguration>
+                                            <color key="baseForegroundColor" systemColor="systemIndigoColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="menuButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g4c-ke-Tpm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray4Color"/>
@@ -222,20 +248,21 @@
                             <constraint firstItem="Sfz-lR-V3g" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="02e-94-nfe"/>
                             <constraint firstItem="BBN-wu-9ua" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="1l6-iz-FuU"/>
                             <constraint firstItem="BBN-wu-9ua" firstAttribute="top" secondItem="ML7-Jc-xb3" secondAttribute="bottom" constant="15" id="7kc-lp-kzp"/>
-                            <constraint firstItem="x1U-Wt-hI3" firstAttribute="top" secondItem="Xqu-nz-iTJ" secondAttribute="bottom" constant="25" id="7kz-nU-Z38"/>
                             <constraint firstItem="Sfz-lR-V3g" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="AJL-IL-KaI"/>
                             <constraint firstItem="Xqu-nz-iTJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Evo-pi-tgY"/>
                             <constraint firstItem="ML7-Jc-xb3" firstAttribute="top" secondItem="cF2-55-iDx" secondAttribute="bottom" constant="15" id="Hwj-cP-9MR"/>
+                            <constraint firstItem="4eg-sW-VOB" firstAttribute="top" secondItem="Xqu-nz-iTJ" secondAttribute="bottom" constant="25" id="KCw-k0-fDT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ML7-Jc-xb3" secondAttribute="trailing" constant="20" id="LxI-2Y-Lgk"/>
                             <constraint firstAttribute="bottom" secondItem="Sfz-lR-V3g" secondAttribute="bottom" id="OOP-MP-aWw"/>
+                            <constraint firstItem="Xqu-nz-iTJ" firstAttribute="centerX" secondItem="Sfz-lR-V3g" secondAttribute="centerX" id="RHu-rO-zBy"/>
                             <constraint firstItem="cF2-55-iDx" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Rsq-pj-Eol"/>
                             <constraint firstItem="ML7-Jc-xb3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="WWX-zI-phV"/>
                             <constraint firstItem="cF2-55-iDx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="ZHi-HC-XS9"/>
-                            <constraint firstItem="x1U-Wt-hI3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ixG-2r-SPb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BBN-wu-9ua" secondAttribute="trailing" constant="20" id="jJk-O7-5lb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xqu-nz-iTJ" secondAttribute="trailing" constant="40" id="lSQ-Eh-BEH"/>
                             <constraint firstItem="Sfz-lR-V3g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rFW-d4-vq3"/>
                             <constraint firstItem="Xqu-nz-iTJ" firstAttribute="top" secondItem="BBN-wu-9ua" secondAttribute="bottom" constant="20" id="xpy-4b-JqV"/>
+                            <constraint firstItem="4eg-sW-VOB" firstAttribute="centerX" secondItem="Sfz-lR-V3g" secondAttribute="centerX" id="xun-xk-Xmy"/>
                         </constraints>
                     </view>
                     <connections>
@@ -253,6 +280,7 @@
                         <outlet property="timeLabelOutlet" destination="T6G-iH-k29" id="giN-4W-IGk"/>
                         <outlet property="timerImageOutlet" destination="dwQ-4W-B9U" id="abD-Z7-LGv"/>
                         <segue destination="g0F-Ye-Rud" kind="presentation" identifier="fromGameVCToRecordsVC" id="4pu-sR-wtt"/>
+                        <segue destination="iww-nU-2Xj" kind="presentation" identifier="fromGameVCToInfoVC" id="fPU-6R-vCe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -266,6 +294,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eTj-sl-sFf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="948" y="2"/>
+        </scene>
+        <!--InfoScreen-->
+        <scene sceneID="Sr7-nj-zO6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="InfoScreen" id="iww-nU-2Xj" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3KF-F9-I9n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="924" y="232"/>
         </scene>
     </scenes>
     <resources>

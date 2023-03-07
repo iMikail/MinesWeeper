@@ -44,9 +44,10 @@ struct DefaultOptions {
 // MARK: - Segues identifiers
 enum Segues: String {
     case fromMainVCToGameDifficultyVC
+    case fromMainVCToOptionsVC
     case fromGameDifficultyVCToGameVC
     case fromGameVCToRecordsVC
-    case fromMainVCToOptionsVC
+    case fromGameVCToInfoVC
 }
 
 // MARK: - UserDefaults keys

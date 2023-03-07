@@ -12,6 +12,7 @@ class GameViewController: UIViewController {
     private let nickName = UserDefaults.standard.string(forKey: UserDefaultsKeys.currentNickName.rawValue) ??
                             UserDefaultsKeys.defaultNickName.rawValue
     private let cellIdentifier = "fieldCell"
+    private let alertManager = AlertManager()
     var minesWeeper: MinesWeeper!
     private var gameTimer: GameTimer?
     private var field: FieldArray { minesWeeper.fieldBuilder.field }
@@ -114,7 +115,14 @@ class GameViewController: UIViewController {
     }
 
     @IBAction func descriptionButtonAction(_ sender: UIButton) {
-        //descr alert/VC
+        performSegue(withIdentifier: Segues.fromGameVCToInfoVC.rawValue, sender: nil)
+    }
+
+    @IBAction func menuButtonAction(_ sender: UIButton) {
+        let alert = alertManager.createBackMainMenuAlert { [weak self] in
+            self?.navigationController?.popToRootViewController(animated: true)
+        }
+        present(alert, animated: true)
     }
 
     // MARK: - Functions

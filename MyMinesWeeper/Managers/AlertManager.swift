@@ -67,4 +67,17 @@ final class AlertManager {
 
         return alert
     }
+
+    func createBackMainMenuAlert(completion: @escaping () -> Void) -> UIAlertController {
+        let text = "Возврат на главный экран отменит текущую игру"
+        let alert = UIAlertController(title: "Предупреждение", message: text, preferredStyle: .alert)
+        let actionOK = UIAlertAction(title: "Выйти", style: .default) { _ in
+            completion()
+        }
+        let actionCansel = UIAlertAction(title: "Остаться", style: .default)
+        alert.addAction(actionOK)
+        alert.addAction(actionCansel)
+
+        return alert
+    }
 }
